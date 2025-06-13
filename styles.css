@@ -1,0 +1,413 @@
+/* Áp dụng box-sizing và ngăn tràn */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Josefin Sans", sans-serif;
+  background-color: #1e293b;
+  color: #f8fafc;
+  margin: 0;
+  padding: 0;
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.header {
+  background-color: #0f172a;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  padding: 16px 0;
+  width: 100%;
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 98px;
+  height: 53px;
+  border-radius: 8px;
+}
+
+.button-group {
+  display: flex;
+  gap: 8px;
+}
+
+.btn-ticket {
+  background: #f3ea28;
+  color: #0f172a;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-family: "Anton", sans-serif;
+  text-transform: uppercase;
+  transition: background 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-ticket:hover {
+  background: #d4cb1f;
+}
+
+.btn-popcorn {
+  background: #663399;
+  color: #f8fafc;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-family: "Anton", sans-serif;
+  text-transform: uppercase;
+  transition: background 0.3s;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-popcorn:hover {
+  background: #552288;
+}
+
+.user-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.search-input {
+  background: white;
+  color: #94a3b8;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  width: 400px;
+  border: none;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.user-profile span {
+  color: #f8fafc;
+  font-size: 14px;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.banner .container {
+  padding: 0 20px;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.banner-content {
+  position: relative; /* Định vị nút so với ảnh */
+  width: calc(100% - 40px); /* Thu nhỏ hai bên */
+  margin: 0 auto;
+  height: 110%;
+}
+
+.banner-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+  z-index: 1;
+}
+
+.banner-buy-ticket {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(220%); /* Căn giữa ngang */
+  z-index: 2;
+  padding: 8px 16px;
+  font-size: 16px;
+}
+
+.section-title {
+  font-family: "Anton", sans-serif;
+  font-size: 40px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.movies {
+  padding: 48px 0;
+  width: 100%;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  width: 100%;
+}
+
+.movie-card {
+  background: #1e293b;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.3s;
+  width: 100%;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+}
+
+.movie-img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: block;
+}
+
+.movie-info {
+  padding: 16px;
+  background-color: #331336;
+}
+
+.tag {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  margin-right: 4px;
+}
+
+.tag-2d {
+  background: #f59e0b;
+}
+
+.tag-t16 {
+  background: #dc2626;
+}
+
+.tag-t18 {
+  background: #dc2626;
+}
+
+.movie-title {
+  font-family: "Josefin Sans", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  margin: 8px 0;
+}
+
+.movie-date {
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 16px;
+  margin: 8px 0;
+}
+
+.watch-trailer {
+  color: #f8fafc;
+  font-size: 14px;
+  margin-right: 16px;
+  text-decoration: none;
+}
+
+.movie-actions {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.btn-see-more {
+  background: transparent;
+  border: 1px solid #f3ea28;
+  color: #f3ea28;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-family: "Anton", sans-serif;
+  text-transform: uppercase;
+  display: block;
+  margin: 32px auto 0;
+  cursor: pointer;
+}
+
+.btn-see-more:hover {
+  background: #f3ea28;
+  color: #0f172a;
+}
+
+.coming-soon {
+  padding: 48px 0;
+  background-color: #1f2937;
+  width: 100%;
+}
+
+.btn-all-incentives {
+  background: #f3ea28;
+  color: #0f172a;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-family: "Anton", sans-serif;
+  text-transform: uppercase;
+  display: block;
+  margin: 32px auto 0;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-all-incentives:hover {
+  background: #d4cb1f;
+}
+
+.footer {
+  background-color: #374151;
+  padding: 32px 0;
+  width: 100%;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  width: 100%;
+}
+
+.footer-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-title {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.footer-link {
+  color: white;
+  font-size: 20px;
+  margin-bottom: 8px;
+  text-decoration: none;
+}
+
+.footer p {
+  font-size: 20px;
+  margin-bottom: 8px;
+}
+
+.footer-logo {
+  width: 128px;
+  margin-top: 16px;
+}
+
+.social-icons {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+}
+
+.social-icon {
+  width: 32px;
+  height: 32px;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .search-input {
+    width: 150px;
+  }
+
+  .banner {
+    height: 400px;
+  }
+
+  .banner-content {
+    width: calc(100% - 30px); /* Thu nhỏ hơn */
+  }
+
+  .banner-buy-ticket {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 768px) {
+  .header .container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .btn-ticket,
+  .btn-popcorn {
+    width: 100%;
+    text-align: center;
+  }
+
+  .search-input {
+    width: 100%;
+  }
+
+  .banner {
+    display: none; /* Ẩn banner trên điện thoại */
+  }
+  .movie-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .promotion-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner {
+    height: 250px;
+  }
+
+  .banner-content {
+    /* width: calc(100% - 10px); */
+  }
+
+  .banner-buy-ticket {
+    padding: 4px 8px;
+    font-size: 12px;
+    bottom: 5px;
+  }
+
+  .movie-img {
+    height: max-content;
+  }
+
+  .container {
+    padding: 0 10px;
+  }
+}
