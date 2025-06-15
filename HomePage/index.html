@@ -1,79 +1,110 @@
+<!-- Khai báo loại tài liệu là HTML5 -->
 <!DOCTYPE html>
+<!-- Khai báo thẻ gốc HTML với ngôn ngữ là tiếng Anh -->
 <html lang="en">
+  <!-- Khai báo phần đầu của tài liệu HTML -->
   <head>
+    <!-- Thiết lập bảng mã ký tự là UTF-8 -->
     <meta charset="UTF-8" />
+    <!-- Đảm bảo giao diện hiển thị tốt trên mọi thiết bị -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cineplex Cinema</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=Josefin+Sans:wght@400;600;700&family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Đặt tiêu đề trang web -->
+    <title>Cineverse - Home</title>
+    <!-- Liên kết đến file CSS -->
     <link rel="stylesheet" href="styles.css" />
+    <!-- Liên kết đến font Josefin Sans từ Google Fonts -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&display=swap"
+    />
+    <!-- Liên kết đến font Anton từ Google Fonts -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Anton&display=swap"
+    />
+    <!-- Liên kết đến font Roboto từ Google Fonts -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+    />
+    <!-- Kết thúc phần đầu -->
   </head>
+  <!-- Khai báo phần thân của tài liệu HTML -->
   <body>
-    <!-- Header -->
+    <!-- Phần tiêu đề trang -->
     <header class="header">
+      <!-- Container giới hạn chiều rộng nội dung -->
       <div class="container">
-        <img src="./Images/logo.png" alt="Cineplex Logo" class="logo" />
+        <!-- Logo của Cineverse -->
+        <img src="images/logo.png" alt="Cineplex logo" class="logo" />
+        <!-- Nhóm nút điều hướng -->
         <div class="button-group">
+          <!-- Nút mua vé -->
           <button class="btn-ticket">Buy Tickets</button>
+          <!-- Nút mua bắp nước -->
           <button class="btn-popcorn">Buy Popcorn</button>
         </div>
+        <!-- Phần thông tin người dùng -->
         <div class="user-section">
-          <input
-            type="text"
-            placeholder="Find movies, theaters"
-            class="search-input"
-          />
+          <!-- Ô tìm kiếm -->
+          <input type="text" class="search-input" placeholder="Search" />
+          <!-- Thông tin hồ sơ người dùng -->
           <div class="user-profile">
+            <!-- Ảnh đại diện -->
+            <img src="images/avatar.jpg" alt="User avatar" class="avatar" />
+            <!-- Tên người dùng -->
             <span>User</span>
-            <img src="./Images/avatar.jpg" alt="User Avatar" class="avatar" />
           </div>
         </div>
       </div>
     </header>
 
-    <!-- Banner -->
+    <!-- Phần banner quảng cáo -->
     <section class="banner">
+      <!-- Container cho nội dung banner -->
       <div class="container">
+        <!-- Nội dung banner -->
         <div class="banner-content">
-          <img
-            src="./Images/banner.jpg"
-            alt="Movie Banner"
-            class="banner-img"
-          />
+          <!-- Hình ảnh banner -->
+          <img src="images/banner.jpg" alt="Banner" class="banner-img" />
+          <!-- Nút mua vé trên banner -->
           <button class="btn-ticket banner-buy-ticket">Buy Tickets</button>
         </div>
       </div>
     </section>
 
-    <!-- Movies Section -->
+    <!-- Phần danh sách phim đang chiếu -->
     <section class="movies">
+      <!-- Container cho danh sách phim -->
       <div class="container">
-        <h3 class="section-title">The movie is showing</h3>
+        <!-- Tiêu đề phần phim đang chiếu -->
+        <h2 class="section-title">The movie is showing</h2>
+        <!-- Lưới hiển thị các phim -->
         <div class="movie-grid">
+          <!-- Thẻ phim 1 -->
           <div class="movie-card">
-            <img
-              src="./Images/movie1.png"
-              alt="Movie Poster"
-              class="movie-img"
-            />
+            <!-- Hình ảnh phim -->
+            <img src="images/movie1.png" alt="Movie 1" class="movie-img" />
+            <!-- Thông tin phim -->
             <div class="movie-info">
+              <!-- Nhãn phim -->
               <span class="tag tag-2d">2D</span>
               <span class="tag tag-t18">T18</span>
+              <!-- Tiêu đề phim -->
               <h3 class="movie-title">Devil entered Trang (T18)</h3>
+              <!-- Hành động: xem trailer và mua vé -->
               <div class="movie-actions">
+                <!-- Liên kết xem trailer -->
                 <a href="#" class="watch-trailer">Watch trailer</a>
+                <!-- Nút mua vé -->
                 <button class="btn-ticket">Buy Tickets</button>
               </div>
             </div>
           </div>
+
+          <!-- Thẻ phim 2 -->
           <div class="movie-card">
-            <img
-              src="./Images/movie5.jpg"
-              alt="Movie Poster"
-              class="movie-img"
-            />
+            <img src="images/movie2.png" alt="Movie 2" class="movie-img" />
             <div class="movie-info">
               <span class="tag tag-2d">2D</span>
               <span class="tag tag-t16">T16</span>
@@ -84,14 +115,11 @@
               </div>
             </div>
           </div>
+
+          <!-- Thẻ phim 3 -->
           <div class="movie-card">
-            <img
-              src="./Images/movie3.png"
-              alt="Movie Poster"
-              class="movie-img"
-            />
+            <img src="images/movie3.png" alt="Movie 3" class="movie-img" />
             <div class="movie-info">
-              <span class="tag tag-2d">2D</span>
               <span class="tag tag-t18">T18</span>
               <h3 class="movie-title">Mickey 17 (T18)</h3>
               <div class="movie-actions">
@@ -100,12 +128,10 @@
               </div>
             </div>
           </div>
+
+          <!-- Thẻ phim 4 -->
           <div class="movie-card">
-            <img
-              src="./Images/movie4.png"
-              alt="Movie Poster"
-              class="movie-img"
-            />
+            <img src="images/movie4.png" alt="Movie 4" class="movie-img" />
             <div class="movie-info">
               <span class="tag tag-2d">2D</span>
               <span class="tag tag-t18">T18</span>
@@ -117,24 +143,30 @@
             </div>
           </div>
         </div>
-        <span class="dots">...</span>
+        <!-- Dấu chấm lửng biểu thị thêm nội dung -->
+        <div class="dots">...</div>
+        <!-- Nút xem thêm phim -->
         <button class="btn-see-more">
           <span class="text">See more</span>
         </button>
       </div>
     </section>
 
-    <!-- Coming Soon Section -->
+    <!-- Phần danh sách phim sắp chiếu -->
     <section class="coming-soon">
+      <!-- Container cho danh sách phim -->
       <div class="container">
-        <h3 class="section-title">Coming Soon</h3>
+        <!-- Tiêu đề phần phim sắp chiếu -->
+        <h2 class="section-title">Coming Soon</h2>
+        <!-- Lưới hiển thị các phim -->
         <div class="movie-grid">
+          <!-- Thẻ phim sắp chiếu 1 -->
           <div class="movie-card">
-            <img src="./Images/3.png" alt="Movie Poster" class="movie-img" />
+            <img src="images/2.png" alt="Coming Soon 1" class="movie-img" />
             <div class="movie-info">
               <span class="tag tag-2d">2D</span>
               <span class="tag tag-t18">T18</span>
-              <p class="movie-date">Premiere: 21/03/2025</p>
+              <span class="movie-date">Premiere: 21/03/2025</span>
               <h3 class="movie-title">FORBIDDEN FAIRYTALE (T18)</h3>
               <div class="movie-actions">
                 <a href="#" class="watch-trailer">Watch trailer</a>
@@ -142,12 +174,18 @@
               </div>
             </div>
           </div>
+
+          <!-- Thẻ phim sắp chiếu 2 -->
           <div class="movie-card">
-            <img src="./Images/2.png" alt="Movie Poster" class="movie-img" />
+            <img
+              src="images/phimquy.png"
+              alt="Coming Soon 2"
+              class="movie-img"
+            />
             <div class="movie-info">
               <span class="tag tag-2d">2D</span>
               <span class="tag tag-t16">T16</span>
-              <p class="movie-date">Premiere: 21/03/2025</p>
+              <span class="movie-date">Premiere: 21/03/2025</span>
               <h3 class="movie-title">YOU ARE THE APPLE OF MY EYE (T16)</h3>
               <div class="movie-actions">
                 <a href="#" class="watch-trailer">Watch trailer</a>
@@ -155,16 +193,18 @@
               </div>
             </div>
           </div>
+
+          <!-- Thẻ phim sắp chiếu 3 -->
           <div class="movie-card">
             <img
-              src="./Images/phimma.png"
-              alt="Movie Poster"
+              src="images/phimma.png"
+              alt="Coming Soon 3"
               class="movie-img"
             />
             <div class="movie-info">
               <span class="tag tag-2d">2D</span>
               <span class="tag tag-t16">T16</span>
-              <p class="movie-date">Premiere: 21/03/2025</p>
+              <span class="movie-date">Premiere: 21/03/2025</span>
               <h3 class="movie-title">DOMINION OF DARKNESS (T18)</h3>
               <div class="movie-actions">
                 <a href="#" class="watch-trailer">Watch trailer</a>
@@ -172,16 +212,14 @@
               </div>
             </div>
           </div>
+
+          <!-- Thẻ phim sắp chiếu 4 -->
           <div class="movie-card">
-            <img
-              src="./Images/phimquy.png"
-              alt="Movie Poster"
-              class="movie-img"
-            />
+            <img src="images/3.png" alt="Coming Soon 4" class="movie-img" />
             <div class="movie-info">
               <span class="tag tag-2d">2D</span>
-              <span class="tag tag-t16">T16</span>
-              <p class="movie-date">Premiere: 21/03/2025</p>
+              <span class="tag tag-t13">T13</span>
+              <span class="movie-date">Premiere: 21/03/2025</span>
               <h3 class="movie-title">
                 EXORCISM CHRONICLES: THE BEGINNING (T13)
               </h3>
@@ -192,63 +230,61 @@
             </div>
           </div>
         </div>
-      </div>
     </section>
-
-    <!-- Footer -->
+    <!-- Phần chân trang -->
     <footer class="footer">
+      <!-- Container cho nội dung chân trang -->
       <div class="container">
+        <!-- Lưới chân trang -->
         <div class="footer-grid">
+          <!-- Cột thông tin công ty -->
           <div class="footer-column">
-            <h3 class="footer-title">
-              Entertainment Joint Stock Company - Cineplex Cinema
-            </h3>
+            <!-- Tên công ty -->
+            <p>Company of Tin and Son - Cineverse Cinema</p>
+            <!-- Địa chỉ -->
             <p>Address: 613 Au Co, Tan Binh, Ho Chi Minh City</p>
+            <!-- Giấy phép kinh doanh -->
             <p>
               Business registration certificate: 0303675393, issued on July 31,
               2008
             </p>
+            <!-- Bản quyền -->
             <p>© 2025 Cineplex. Copyright registration in Vietnam.</p>
-            <img
-              src="./Images/footer-logo.png"
-              alt="Footer Logo"
-              class="footer-logo"
-            />
+            <!-- Biểu tượng mạng xã hội -->
           </div>
+          <!-- Cột chính sách và điều khoản -->
           <div class="footer-column">
+            <!-- Tiêu đề cột -->
             <h3 class="footer-title">Policy & Terms</h3>
+            <!-- Liên kết điều khoản sử dụng -->
             <a href="#" class="footer-link">Terms of use</a>
+            <!-- Liên kết chính sách bảo mật -->
             <a href="#" class="footer-link">Privacy policy</a>
+            <!-- Liên kết hướng dẫn thanh toán -->
             <a href="#" class="footer-link">Payment guide</a>
+            <!-- Liên kết chính sách đổi trả -->
             <a href="#" class="footer-link">Exchange/return policy</a>
           </div>
+          <!-- Cột liên hệ -->
           <div class="footer-column">
+            <!-- Tiêu đề cột -->
             <h3 class="footer-title">Contact us</h3>
+            <!-- Hotline -->
             <p>Hotline: 1234 56789</p>
-            <p>Email: hiidap@cvr.vn</p>
+            <!-- Email liên hệ -->
+            <p>
+              Email:
+              <a href="mailto:support@cineplex.vn">support@cineplex.vn</a>
+            </p>
+            <!-- Giờ làm việc -->
             <p>Working hours: 8:00 - 22:00 (all days including Tet holiday)</p>
-            <div class="social-icons">
-              <img
-                src="./Images/social1.png"
-                alt="Social Icon"
-                class="social-icon"
-              />
-              <img
-                src="./Images/social2.png"
-                alt="Social Icon"
-                class="social-icon"
-              />
-              <img
-                src="./Images/social3.png"
-                alt="Social Icon"
-                class="social-icon"
-              />
-            </div>
           </div>
         </div>
       </div>
     </footer>
-
+    <!-- Liên kết đến file JavaScript -->
     <script src="script.js"></script>
+    <!-- Kết thúc phần thân -->
   </body>
+  <!-- Kết thúc thẻ HTML -->
 </html>

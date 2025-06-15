@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Handle "See more" button click
   const seeMoreButton = document.querySelector(".btn-see-more");
   seeMoreButton.addEventListener("click", () => {
-    alert("Loading more movies...");
+    alert("Đang tải danh sách phim...");
     // Replace with actual logic to load more movies
   });
 

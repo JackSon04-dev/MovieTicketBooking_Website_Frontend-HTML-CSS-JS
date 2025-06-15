@@ -1,0 +1,49 @@
+<!-- Khai báo loại tài liệu là HTML5 -->
+<!DOCTYPE html>
+<!-- Khai báo thẻ gốc HTML với ngôn ngữ là tiếng Anh -->
+<html lang="en">
+  <!-- Khai báo phần đầu của tài liệu HTML -->
+  <head>
+    <!-- Thiết lập bảng mã ký tự là UTF-8 -->
+    <meta charset="UTF-8" />
+    <!-- Đảm bảo giao diện hiển thị tốt trên mọi thiết bị -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Đặt tiêu đề trang web -->
+    <title>Welcome to Cineverse</title>
+    <!-- Liên kết đến file CSS -->
+    <link rel="stylesheet" href="styles.css" />
+    <!-- Kết thúc phần đầu -->
+  </head>
+  <!-- Khai báo phần thân của tài liệu HTML -->
+  <body>
+    <!-- Div chứa hình nền -->
+    <div class="background">
+      <!-- Div chứa form đăng nhập -->
+      <div class="login-container">
+        <!-- Tiêu đề chào mừng -->
+        <h2>Welcome to Cineverse</h2>
+        <!-- Nút đăng nhập bằng Google -->
+        <button class="google-btn">Continue with Google</button>
+        <!-- Dòng chữ "or" phân cách -->
+        <div class="or-divider">or</div>
+        <!-- Ô nhập email -->
+        <input
+          type="email"
+          class="email-input"
+          id="emailInput"
+          placeholder="Enter your email"
+        />
+        <!-- Nút tiếp tục với email -->
+        <button class="continue-btn" onclick="validateEmail()">
+          Continue with Email
+        </button>
+        <!-- Kết thúc div form đăng nhập -->
+      </div>
+      <!-- Kết thúc div hình nền -->
+    </div>
+    <!-- Liên kết đến file JavaScript -->
+    <script src="script.js"></script>
+    <!-- Kết thúc phần thân -->
+  </body>
+  <!-- Kết thúc thẻ HTML -->
+</html>

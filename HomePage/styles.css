@@ -1,0 +1,867 @@
+/* Đặt box-sizing cho tất cả phần tử */
+* {
+  /* Đảm bảo chiều rộng và cao bao gồm viền và đệm */
+  box-sizing: border-box;
+}
+
+/* Định dạng cơ bản cho body */
+body {
+  /* Sử dụng font Josefin Sans */
+  font-family: "Josefin Sans", sans-serif;
+  /* Màu nền tối */
+  background-color: #1e293b;
+  /* Màu chữ sáng */
+  color: #f8fafc;
+  /* Xóa lề ngoài */
+  margin: 0;
+  /* Xóa đệm bên trong */
+  padding: 0;
+  /* Đặt chiều rộng tối đa */
+  max-width: 100vw;
+  /* Ngăn tràn ngang */
+  overflow-x: hidden;
+}
+
+/* Định dạng container chính */
+.container {
+  /* Đặt chiều rộng tối đa */
+  max-width: 1200px;
+  /* Căn giữa container */
+  margin: 0 auto;
+  /* Thêm đệm hai bên */
+  padding: 0 20px;
+  /* Đặt chiều rộng đầy đủ */
+  width: 100%;
+  /* Xóa tràn nội dung của các phần tử con */
+  overflow: hidden;
+}
+
+/* Định dạng tiêu đề trang */
+.header {
+  /* Màu nền tối hơn */
+  background-color: #0f172a;
+  /* Đặt chiều rộng đầy đủ */
+  width: 100%;
+  /* Thêm đệm trên dưới */
+  padding: 16px 0;
+  /* Sử dụng float để bố trí */
+  float: left;
+  /* Xóa float của các phần tử trước */
+  clear: both;
+}
+
+/* Định dạng container trong header */
+.header .container {
+  /* Xóa tràn nội dung */
+  overflow: hidden;
+}
+
+/* Định dạng logo */
+.logo {
+  /* Đặt kích thước logo */
+  width: 98px;
+  height: 53px;
+  /* Bo tròn góc */
+  border-radius: 8px;
+  /* Đặt logo sang trái */
+  float: left;
+  /* Điều chỉnh lề trái */
+  margin-left: -10px;
+}
+
+/* Định dạng nhóm nút */
+.button-group {
+  /* Đặt sang trái */
+  float: left;
+  /* Thêm lề trái */
+  margin-left: 20px;
+}
+
+/* Xóa float sau nhóm nút */
+.button-group:after {
+  /* Thêm nội dung rỗng */
+  content: "";
+  /* Hiển thị dạng khối */
+  display: block;
+  /* Xóa float */
+  clear: both;
+}
+
+/* Định dạng nút mua vé */
+.btn-ticket {
+  /* Màu nền vàng */
+  background: #f3ea28;
+  /* Màu chữ tối */
+  color: #0f172a;
+  /* Thêm đệm */
+  padding: 8px 16px;
+  /* Bo tròn góc */
+  border-radius: 4px;
+  /* Font chữ Anton */
+  font-family: "Anton", sans-serif;
+  /* Chữ in hoa */
+  text-transform: uppercase;
+  /* Hiệu ứng chuyển màu */
+  transition: background 0.3s;
+  /* Không viền */
+  border: none;
+  /* Con trỏ chuột bàn tay */
+  cursor: pointer;
+  /* Đặt sang trái */
+  float: left;
+  /* Thêm lề phải */
+  margin-right: 8px;
+}
+
+/* Hiệu ứng hover cho nút mua vé */
+.btn-ticket:hover {
+  /* Màu nền vàng đậm hơn */
+  background: #d4cb1f;
+}
+
+/* Định dạng nút mua bắp nước */
+.btn-popcorn {
+  /* Màu nền tím */
+  background: #663399;
+  /* Màu chữ sáng */
+  color: #f8fafc;
+  /* Thêm đệm */
+  padding: 8px 16px;
+  /* Bo tròn góc */
+  border-radius: 4px;
+  /* Font chữ Anton */
+  font-family: "Anton", sans-serif;
+  /* Chữ in hoa */
+  text-transform: uppercase;
+  /* Hiệu ứng chuyển màu */
+  transition: background 0.3s;
+  /* Không viền */
+  border: none;
+  /* Con trỏ chuột bàn tay */
+  cursor: pointer;
+  /* Đặt sang trái */
+  float: left;
+}
+
+/* Hiệu ứng hover cho nút mua bắp nước */
+.btn-popcorn:hover {
+  /* Màu nền tím đậm hơn */
+  background: #552288;
+}
+
+/* Định dạng phần thông tin người dùng */
+.user-section {
+  /* Đặt sang phải */
+  float: right;
+}
+
+/* Xóa float sau phần thông tin người dùng */
+.user-section:after {
+  /* Thêm nội dung rỗng */
+  content: "";
+  /* Hiển thị dạng khối */
+  display: block;
+  /* Xóa float */
+  clear: both;
+}
+
+/* Định dạng ô tìm kiếm */
+.search-input {
+  /* Màu nền trắng */
+  background: white;
+  /* Màu chữ xám */
+  color: #94a3b8;
+  /* Thêm đệm */
+  padding: 8px 16px;
+  /* Bo tròn hoàn toàn */
+  border-radius: 9999px;
+  /* Đặt chiều rộng */
+  width: 400px;
+  /* Không viền */
+  border: none;
+  /* Đặt sang trái */
+  float: left;
+  /* Thêm lề phải */
+  margin-right: 16px;
+}
+
+/* Định dạng hồ sơ người dùng */
+.user-profile {
+  /* Đặt sang trái */
+  float: left;
+  /* Thêm lề trái */
+  margin-left: 5px;
+}
+
+/* Định dạng tên người dùng */
+.user-profile span {
+  /* Màu chữ sáng */
+  color: #f8fafc;
+  /* Kích thước chữ */
+  font-size: 14px;
+  /* Đặt sang trái */
+  float: left;
+  /* Căn giữa theo chiều dọc */
+  line-height: 28px;
+  /* Thêm lề trái và phải */
+  margin-left: 1px;
+  margin-right: 4px;
+}
+
+/* Định dạng ảnh đại diện */
+.avatar {
+  /* Kích thước ảnh */
+  width: 24px;
+  height: 24px;
+  /* Bo tròn thành hình tròn */
+  border-radius: 50%;
+  /* Đặt sang trái */
+  float: left;
+  /* Thêm đệm */
+  padding: 3px;
+}
+
+/* Định dạng phần banner */
+.banner {
+  /* Chiều rộng đầy đủ */
+  width: 100%;
+  /* Chiều cao cố định */
+  height: 500px;
+  /* Ngăn tràn nội dung */
+  overflow: hidden;
+  /* Thêm lề dưới âm để chồng lấn */
+  margin-bottom: -130px;
+  /* Sử dụng float để bố trí */
+  float: left;
+  /* Xóa float của các phần tử trước */
+  clear: both;
+}
+
+/* Định dạng container trong banner */
+.banner .container {
+  /* Thêm đệm hai bên */
+  padding: 0 20px;
+  /* Đặt chiều rộng tối đa */
+  max-width: 1200px;
+  /* Chiều rộng đầy đủ */
+  width: 100%;
+}
+
+/* Định dạng nội dung banner */
+.banner-content {
+  /* Chiều rộng trừ đệm */
+  width: calc(100% - 40px);
+  /* Căn giữa */
+  margin: 0 auto;
+  /* Chiều cao đầy đủ */
+  height: 100%;
+  /* Sử dụng float để bố trí */
+  float: left;
+  /* Xóa float của các phần tử trước */
+  clear: both;
+}
+
+/* Định dạng hình ảnh banner */
+.banner-img {
+  /* Chiều rộng đầy đủ */
+  width: 100%;
+  /* Chiều cao đầy đủ */
+  height: 100%;
+  /* Phù hợp với container */
+  object-fit: contain;
+  /* Hiển thị dạng khối */
+  display: block;
+  /* Sử dụng float để bố trí */
+  float: left;
+}
+
+/* Định dạng nút mua vé trên banner */
+.banner-buy-ticket {
+  /* Sử dụng float để định vị */
+  float: left;
+  /* Thêm lề trên để đẩy xuống dưới */
+  margin-top: 450px;
+  /* Thêm lề trái để căn chỉnh */
+  margin-left: 75%;
+  /* Thêm đệm */
+  padding: 8px 16px;
+  /* Kích thước chữ */
+  font-size: 16px;
+}
+
+/* Định dạng tiêu đề phần */
+.section-title {
+  /* Font chữ Anton */
+  font-family: "Anton", sans-serif;
+  /* Kích thước chữ lớn */
+  font-size: 40px;
+  /* Chữ in hoa */
+  text-transform: uppercase;
+  /* Căn giữa chữ */
+  text-align: center;
+  /* Thêm lề dưới */
+  margin-bottom: 32px;
+  /* Sử dụng float để bố trí */
+  float: left;
+  /* Chiều rộng đầy đủ */
+  width: 100%;
+  /* Xóa float của các phần tử trước */
+  clear: both;
+}
+
+/* Định dạng phần danh sách phim */
+.movies {
+  /* Thêm đệm trên dưới */
+  padding: 48px 0;
+  /* Chiều rộng đầy đủ */
+  width: 100%;
+  /* Sử dụng float để bố trí */
+  float: left;
+  /* Xóa float của các phần tử trước */
+  clear: both;
+}
+
+/* Định dạng lưới phim */
+.movie-grid {
+  /* Xóa tràn nội dung */
+  overflow: hidden;
+  /* Sử dụng float để bố trí */
+  float: left;
+  /* Chiều rộng đầy đủ */
+  width: 100%;
+  /* Xóa float của các phần tử trước */
+  clear: both;
+}
+
+/* Định dạng thẻ phim */
+.movie-card {
+  /* Màu nền tối */
+  background: #1e293b;
+  /* Bo tròn góc */
+  border-radius: 8px;
+  /* Ngăn tràn nội dung */
+  overflow: hidden;
+  /* Hiệu ứng phóng to */
+  transition: transform 0.3s;
+  /* Chiều rộng chiếm 23% */
+  width: 23%;
+  /* Đặt sang trái */
+  float: left;
+  /* Thêm lề phải */
+  margin-right: 2%;
+  /* Thêm lề dưới */
+  margin-bottom: 24px;
+}
+
+/* Xóa lề phải cho thẻ phim cuối mỗi hàng */
+.movie-card:nth-child(4n) {
+  /* Xóa lề phải */
+  margin-right: 0;
+}
+
+/* Hiệu ứng hover cho thẻ phim */
+.movie-card:hover {
+  /* Phóng to nhẹ */
+  transform: scale(1.05);
+}
+
+/* Định dạng hình ảnh phim */
+.movie-img {
+  /* Chiều rộng đầy đủ */
+  width: 100%;
+  /* Chiều cao cố định */
+  height: 400px;
+  /* Phù hợp với container */
+  object-fit: cover;
+  /* Hiển thị dạng khối */
+  display: block;
+}
+
+/* Định dạng thông tin phim */
+.movie-info {
+  /* Thêm đệm */
+  padding: 16px;
+  /* Màu nền tím đậm */
+  background-color: #331336;
+  /* Sử dụng float để bố trí */
+  float: left;
+  /* Chiều rộng đầy đủ */
+  width: 100%;
+}
+
+/* Định dạng nhãn phim */
+.tag {
+  /* Hiển thị dạng khối nội tuyến */
+  display: inline-block;
+  /* Thêm đệm */
+  padding: 4px 8px;
+  /* Bo tròn góc */
+  border-radius: 4px;
+  /* Kích thước chữ nhỏ */
+  font-size: 12px;
+  /* Thêm lề phải */
+  margin-right: 4px;
+}
+
+/* Định dạng nhãn 2D */
+.tag-2d {
+  /* Màu nền vàng cam */
+  background: #f59e0b;
+}
+
+/* Định dạng nhãn T13 */
+.tag-t13 {
+  /* Màu nền đỏ */
+  background: #dc2626;
+}
+
+/* Định dạng nhãn T16 */
+.tag-t16 {
+  /* Màu nền đỏ */
+  background: #dc2626;
+}
+
+/* Định dạng nhãn T18 */
+.tag-t18 {
+  /* Màu nền đỏ */
+  background: #dc2626;
+}
+
+/* Định dạng tiêu đề phim */
+.movie-title {
+  /* Font chữ Josefin Sans */
+  font-family: "Josefin Sans", sans-serif;
+  /* Độ đậm chữ */
+  font-weight: 600;
+  /* Kích thước chữ */
+  font-size: 18px;
+  /* Thêm lề trên dưới */
+  margin: 8px 0;
+}
+
+/* Định dạng ngày phát hành */
+.movie-date {
+  /* Màu chữ sáng mờ */
+  color: rgba(255, 255, 255, 0.78);
+  /* Kích thước chữ */
+  font-size: 16px;
+  /* Thêm lề trên dưới */
+  margin: 8px 0;
+}
+
+/* Định dạng liên kết xem trailer */
+.watch-trailer {
+  /* Màu chữ sáng */
+  color: #f8fafc;
+  /* Kích thước chữ */
+  font-size: 14px;
+  /* Thêm lề phải */
+  margin-right: 16px;
+  /* Xóa gạch chân */
+  text-decoration: none;
+  /* Đặt sang trái */
+  float: left;
+  /* Căn giữa theo chiều dọc */
+  line-height: 32px;
+}
+
+/* Định dạng hành động phim */
+.movie-actions {
+  /* Xóa tràn nội dung */
+  overflow: hidden;
+  /* Sử dụng float để bố trí */
+  float: left;
+  /* Chiều rộng đầy đủ */
+  width: 100%;
+}
+
+/* Định dạng nút mua vé trong hành động */
+.movie-actions .btn-ticket {
+  /* Đặt sang trái */
+  float: left;
+}
+
+/* Định dạng nút xem thêm */
+.btn-see-more {
+  /* Màu nền trong suốt */
+  background: transparent;
+  /* Viền vàng */
+  border: 1px solid #f3ea28;
+  /* Màu chữ vàng */
+  color: #f3ea28;
+  /* Thêm đệm */
+  padding: 12px 16px;
+  /* Bo tròn góc */
+  border-radius: 4px;
+  /* Font chữ Anton */
+  font-family: "Anton", sans-serif;
+  /* Chữ in hoa */
+  text-transform: uppercase;
+  /* Hiển thị dạng khối */
+  display: block;
+  /* Căn giữa */
+  margin: 32px auto 0;
+  /* Con trỏ chuột bàn tay */
+  cursor: pointer;
+  /* Chiều rộng 100px để căn giữa */
+  width: 100px;
+  /* Xóa float của các phần tử trước */
+  clear: both;
+}
+
+/* Hiệu ứng hover cho nút xem thêm */
+.btn-see-more:hover {
+  /* Màu nền vàng */
+  background: #f3ea28;
+  /* Màu chữ tối */
+  color: #0f172a;
+}
+
+/* Định dạng dấu chấm lửng */
+.dots {
+  /* Hiển thị dạng khối */
+  display: block;
+  /* Kích thước chữ lớn */
+  font-size: 59px;
+  /* Căn giữa chữ */
+  text-align: center;
+  /* Thêm lề trên âm */
+  margin-top: -41px;
+  /* Sử dụng float để bố trí */
+  float: left;
+  /* Chiều rộng đầy đủ */
+  width: 100%;
+  /* Xóa float của các phần tử trước */
+  clear: both;
+}
+
+/* Định dạng văn bản trong nút xem thêm */
+.btn-see-more .text {
+  /* Hiển thị dạng khối */
+  display: block;
+}
+
+/* Định dạng phần phim sắp chiếu */
+.coming-soon {
+  /* Thêm đệm trên dưới */
+  padding: 48px 0;
+  /* Màu nền xám đậm */
+  background-color: #1f2937;
+  /* Chiều rộng đầy đủ */
+  width: 100%;
+  /* Sử dụng float để bố trí */
+  float: left;
+  /* Xóa float của các phần tử trước */
+  clear: both;
+}
+
+/* Định dạng nút tất cả ưu đãi */
+.btn-all-incentives {
+  /* Màu nền vàng */
+  background: #f3ea28;
+  /* Màu chữ tối */
+  color: #0f172a;
+  /* Thêm đệm */
+  padding: 8px 16px;
+  /* Bo tròn góc */
+  border-radius: 4px;
+  /* Font chữ Anton */
+  font-family: "Anton", sans-serif;
+  /* Chữ in hoa */
+  text-transform: uppercase;
+  /* Hiển thị dạng khối */
+  display: block;
+  /* Căn giữa */
+  margin: 32px auto 0;
+  /* Không viền */
+  border: none;
+  /* Con trỏ chuột bàn tay */
+  cursor: pointer;
+  /* Sử dụng float để bố trí */
+  float: left;
+  /* Chiều rộng 150px để căn giữa */
+  width: 150px;
+  /* Xóa float của các phần tử trước */
+  clear: both;
+}
+
+/* Hiệu ứng hover cho nút tất cả ưu đãi */
+.btn-all-incentives:hover {
+  /* Màu nền vàng đậm hơn */
+  background: #d4cb1f;
+}
+
+/* Định dạng chân trang */
+.footer {
+  /* Màu nền xám */
+  background-color: #374151;
+  /* Thêm đệm trên dưới */
+  padding: 32px 0;
+  /* Chiều rộng đầy đủ */
+  width: 100%;
+  /* Sử dụng float để bố trí */
+  float: left;
+  /* Xóa float của các phần tử trước */
+  clear: both;
+}
+
+/* Định dạng lưới chân trang */
+.footer-grid {
+  /* Xóa tràn nội dung */
+  overflow: hidden;
+  /* Sử dụng float để bố trí */
+  float: left;
+  /* Chiều rộng đầy đủ */
+  width: 100%;
+  /* Xóa float của các phần tử trước */
+  clear: both;
+}
+
+/* Định dạng cột chân trang */
+.footer-column {
+  /* Chiều rộng chiếm 1/3 */
+  width: 33.33%;
+  /* Đặt sang trái */
+  float: left;
+  /* Thêm đệm phải */
+  padding-right: 32px;
+}
+
+/* Xóa đệm phải cho cột cuối */
+.footer-column:last-child {
+  /* Xóa đệm phải */
+  padding-right: 0;
+}
+
+/* Định dạng tiêu đề chân trang */
+.footer-title {
+  /* Font chữ Roboto */
+  font-family: "Roboto", sans-serif;
+  /* Độ đậm chữ */
+  font-weight: 700;
+  /* Kích thước chữ */
+  font-size: 24px;
+  /* Thêm lề dưới */
+  margin-bottom: 16px;
+}
+
+/* Định dạng liên kết chân trang */
+.footer-link {
+  /* Màu chữ trắng */
+  color: white;
+  /* Kích thước chữ */
+  font-size: 20px;
+  /* Thêm lề dưới */
+  margin-bottom: 8px;
+  /* Xóa gạch chân */
+  text-decoration: none;
+  /* Hiển thị dạng khối */
+  display: block;
+}
+
+/* Định dạng văn bản trong chân trang */
+.footer p {
+  /* Kích thước chữ */
+  font-size: 20px;
+  /* Thêm lề dưới */
+  margin-bottom: 8px;
+}
+
+/* Định dạng logo chân trang */
+.footer-logo {
+  /* Kích thước logo */
+  width: 128px;
+  /* Thêm lề trên */
+  margin-top: 16px;
+}
+
+/* Định dạng các biểu tượng mạng xã hội */
+.social-icons {
+  /* Xóa tràn nội dung */
+  overflow: hidden;
+  /* Sử dụng float để bố trí */
+  float: left;
+  /* Chiều rộng đầy đủ */
+  width: 100%;
+}
+
+/* Định dạng biểu tượng mạng xã hội */
+.social-icon {
+  /* Kích thước biểu tượng */
+  width: 32px;
+  height: 32px;
+  /* Đặt sang trái */
+  float: left;
+  /* Thêm lề phải */
+  margin-right: 16px;
+}
+
+/* Định dạng responsive cho màn hình nhỏ hơn 1024px */
+@media (max-width: 1024px) {
+  /* Điều chỉnh chiều rộng ô tìm kiếm */
+  .search-input {
+    /* Đặt chiều rộng nhỏ hơn */
+    width: 150px;
+  }
+
+  /* Điều chỉnh chiều cao banner */
+  .banner {
+    /* Đặt chiều cao nhỏ hơn */
+    height: 400px;
+  }
+
+  /* Điều chỉnh chiều rộng nội dung banner */
+  .banner-content {
+    /* Chiều rộng trừ đệm */
+    width: calc(100% - 30px);
+  }
+
+  /* Điều chỉnh nút mua vé trên banner */
+  .banner-buy-ticket {
+    /* Thêm đệm nhỏ hơn */
+    padding: 6px 12px;
+    /* Kích thước chữ nhỏ hơn */
+    font-size: 14px;
+    /* Điều chỉnh lề trên để đẩy xuống */
+    margin-top: 350px;
+  }
+}
+
+/* Định dạng responsive cho màn hình nhỏ hơn 768px */
+@media (max-width: 768px) {
+  /* Đảm bảo container trong header không tràn */
+  .header .container {
+    /* Xóa tràn nội dung */
+    overflow: hidden;
+  }
+
+  /* Logo không float */
+  .logo {
+    /* Xóa float */
+    float: none;
+    /* Thêm lề dưới */
+    margin-bottom: 16px;
+  }
+
+  /* Nhóm nút không float */
+  .button-group {
+    /* Xóa float */
+    float: none;
+    /* Xóa lề trái */
+    margin-left: 0;
+    /* Chiều rộng đầy đủ */
+    width: 100%;
+  }
+
+  /* Nút mua vé và bắp nước chiếm 48% chiều rộng */
+  .btn-ticket,
+  .btn-popcorn {
+    /* Chiều rộng 48% */
+    width: 48%;
+    /* Thêm lề phải */
+    margin-right: 4%;
+    /* Đặt sang trái */
+    float: left;
+  }
+
+  /* Xóa lề phải cho nút bắp nước */
+  .btn-popcorn {
+    /* Xóa lề phải */
+    margin-right: 0;
+  }
+
+  /* Phần thông tin người dùng không float */
+  .user-section {
+    /* Xóa float */
+    float: none;
+    /* Chiều rộng đầy đủ */
+    width: 100%;
+    /* Thêm lề trên */
+    margin-top: 16px;
+  }
+
+  /* Ô tìm kiếm chiếm toàn bộ chiều rộng */
+  .search-input {
+    /* Chiều rộng đầy đủ */
+    width: 100%;
+    /* Xóa lề phải */
+    margin-right: 0;
+    /* Thêm lề dưới */
+    margin-bottom: 16px;
+  }
+
+  /* Hồ sơ người dùng không float */
+  .user-profile {
+    /* Xóa float */
+    float: none;
+  }
+
+  /* Ẩn banner */
+  .banner {
+    /* Không hiển thị */
+    display: none;
+  }
+
+  /* Thẻ phim chiếm toàn bộ chiều rộng */
+  .movie-card {
+    /* Chiều rộng đầy đủ */
+    width: 100%;
+    /* Xóa lề phải */
+    margin-right: 0;
+    /* Thêm lề dưới */
+    margin-bottom: 24px;
+  }
+
+  /* Cột chân trang chiếm toàn bộ chiều rộng */
+  .footer-column {
+    /* Chiều rộng đầy đủ */
+    width: 100%;
+    /* Xóa đệm phải */
+    padding-right: 0;
+    /* Thêm lề dưới */
+    margin-bottom: 32px;
+  }
+
+  /* Xóa lề dưới cho cột cuối */
+  .footer-column:last-child {
+    /* Xóa lề dưới */
+    margin-bottom: 0;
+  }
+}
+
+/* Định dạng responsive cho màn hình nhỏ hơn 480px */
+@media (max-width: 480px) {
+  /* Điều chỉnh chiều cao banner */
+  .banner {
+    /* Đặt chiều cao nhỏ hơn */
+    height: 250px;
+  }
+
+  /* Điều chỉnh chiều rộng nội dung banner */
+  .banner-content {
+    /* Chiều rộng trừ đệm */
+    width: calc(100% - 10px);
+  }
+
+  /* Điều chỉnh nút mua vé trên banner */
+  .banner-buy-ticket {
+    /* Thêm đệm nhỏ hơn */
+    padding: 4px 8px;
+    /* Kích thước chữ nhỏ hơn */
+    font-size: 12px;
+    /* Điều chỉnh lề trên để đẩy xuống */
+    margin-top: 200px;
+  }
+
+  /* Chiều cao hình ảnh phim tự động */
+  .movie-img {
+    /* Chiều cao tự động */
+    height: auto;
+  }
+
+  /* Giảm đệm container */
+  .container {
+    /* Giảm đệm hai bên */
+    padding: 0 10px;
+  }
+}
