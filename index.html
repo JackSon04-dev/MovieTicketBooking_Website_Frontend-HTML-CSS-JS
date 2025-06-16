@@ -1,254 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cineplex Cinema</title>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anton&family=Josefin+Sans:wght@400;600;700&family=Roboto:wght@400;700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <!-- Header -->
-    <header class="header">
-      <div class="container">
-        <img src="./Images/logo.png" alt="Cineplex Logo" class="logo" />
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cineplex Cinema</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Anton&family=Josefin+Sans:wght@400;600;700&family=Roboto:wght@400;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <img src="./Images/logo.png" alt="Cineplex Logo" class="logo" />
+      <button class="hamburger">☰</button>
+      <div class="menu-items">
         <div class="button-group">
           <button class="btn-ticket">Buy Tickets</button>
           <button class="btn-popcorn">Buy Popcorn</button>
         </div>
         <div class="user-section">
-          <input
-            type="text"
-            placeholder="Find movies, theaters"
-            class="search-input"
-          />
+          <input type="text" placeholder="Find movies, theaters" class="search-input" />
           <div class="user-profile">
             <span>User</span>
             <img src="./Images/avatar.jpg" alt="User Avatar" class="avatar" />
           </div>
         </div>
       </div>
-    </header>
 
-    <!-- Banner -->
-    <section class="banner">
-      <div class="container">
-        <div class="banner-content">
-          <img
-            src="./Images/banner.jpg"
-            alt="Movie Banner"
-            class="banner-img"
-          />
-          <button class="btn-ticket banner-buy-ticket">Buy Tickets</button>
-        </div>
+    </div>
+  </header>
+
+  <!-- Banner -->
+  <section class="banner">
+    <div class="container">
+      <div class="banner-content">
+        <img src="./Images/banner.jpg" alt="Movie Banner" class="banner-img" />
+        <button class="btn-ticket banner-buy-ticket" data-movie="Unknown Movie">Buy Tickets</button>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Movies Section -->
-    <section class="movies">
-      <div class="container">
-        <h3 class="section-title">The movie is showing</h3>
-        <div class="movie-grid">
-          <div class="movie-card">
-            <img
-              src="./Images/movie1.png"
-              alt="Movie Poster"
-              class="movie-img"
-            />
-            <div class="movie-info">
-              <span class="tag tag-2d">2D</span>
-              <span class="tag tag-t18">T18</span>
-              <h3 class="movie-title">Devil entered Trang (T18)</h3>
-              <div class="movie-actions">
-                <a href="#" class="watch-trailer">Watch trailer</a>
-                <button class="btn-ticket">Buy Tickets</button>
-              </div>
-            </div>
-          </div>
-          <div class="movie-card">
-            <img
-              src="./Images/movie5.jpg"
-              alt="Movie Poster"
-              class="movie-img"
-            />
-            <div class="movie-info">
-              <span class="tag tag-2d">2D</span>
-              <span class="tag tag-t16">T16</span>
-              <h3 class="movie-title">Red Man (T16)</h3>
-              <div class="movie-actions">
-                <a href="#" class="watch-trailer">Watch trailer</a>
-                <button class="btn-ticket">Buy Tickets</button>
-              </div>
-            </div>
-          </div>
-          <div class="movie-card">
-            <img
-              src="./Images/movie3.png"
-              alt="Movie Poster"
-              class="movie-img"
-            />
-            <div class="movie-info">
-              <span class="tag tag-2d">2D</span>
-              <span class="tag tag-t18">T18</span>
-              <h3 class="movie-title">Mickey 17 (T18)</h3>
-              <div class="movie-actions">
-                <a href="#" class="watch-trailer">Watch trailer</a>
-                <button class="btn-ticket">Buy Tickets</button>
-              </div>
-            </div>
-          </div>
-          <div class="movie-card">
-            <img
-              src="./Images/movie4.png"
-              alt="Movie Poster"
-              class="movie-img"
-            />
-            <div class="movie-info">
-              <span class="tag tag-2d">2D</span>
-              <span class="tag tag-t18">T18</span>
-              <h3 class="movie-title">THE MONKEY (T18)</h3>
-              <div class="movie-actions">
-                <a href="#" class="watch-trailer">Watch trailer</a>
-                <button class="btn-ticket">Buy Tickets</button>
-              </div>
+  <!-- Movies Section -->
+  <section class="movies">
+    <div class="container">
+      <h3 class="section-title">The movie is showing</h3>
+      <div class="movie-grid">
+        <div class="movie-card">
+          <img src="./Images/movie1.png" alt="Movie Poster" class="movie-img" />
+          <div class="movie-info">
+            <span class="tag tag-2d">2D</span>
+            <span class="tag tag-t18">T18</span>
+            <h3 class="movie-title">Devil entered Trang (T18)</h3>
+            <div class="movie-actions">
+              <a href="#" class="watch-trailer">Watch trailer</a>
+              <button class="btn-ticket" data-movie="Devil entered Trang">Buy Tickets</button>
             </div>
           </div>
         </div>
-        <span class="dots">...</span>
-        <button class="btn-see-more">
-          <span class="text">See more</span>
-        </button>
-      </div>
-    </section>
-
-    <!-- Coming Soon Section -->
-    <section class="coming-soon">
-      <div class="container">
-        <h3 class="section-title">Coming Soon</h3>
-        <div class="movie-grid">
-          <div class="movie-card">
-            <img src="./Images/3.png" alt="Movie Poster" class="movie-img" />
-            <div class="movie-info">
-              <span class="tag tag-2d">2D</span>
-              <span class="tag tag-t18">T18</span>
-              <p class="movie-date">Premiere: 21/03/2025</p>
-              <h3 class="movie-title">FORBIDDEN FAIRYTALE (T18)</h3>
-              <div class="movie-actions">
-                <a href="#" class="watch-trailer">Watch trailer</a>
-                <button class="btn-ticket">Buy Tickets</button>
-              </div>
+        <div class="movie-card">
+          <img src="./Images/movie5.jpg" data-movie="Red Man" alt="Movie Poster" class="movie-img" />
+          <div class="movie-info">
+            <span class="tag tag-2d">2D</span>
+            <span class="tag tag-t16">T16</span>
+            <h3 class="movie-title">Red Man (T16)</h3>
+            <div class="movie-actions">
+              <a href="#" class="watch-trailer">Watch trailer</a>
+              <button class="btn-ticket" data-movie="Red Man">Buy Tickets</button>
             </div>
           </div>
-          <div class="movie-card">
-            <img src="./Images/2.png" alt="Movie Poster" class="movie-img" />
-            <div class="movie-info">
-              <span class="tag tag-2d">2D</span>
-              <span class="tag tag-t16">T16</span>
-              <p class="movie-date">Premiere: 21/03/2025</p>
-              <h3 class="movie-title">YOU ARE THE APPLE OF MY EYE (T16)</h3>
-              <div class="movie-actions">
-                <a href="#" class="watch-trailer">Watch trailer</a>
-                <button class="btn-ticket">Buy Tickets</button>
-              </div>
+        </div>
+        <div class="movie-card">
+          <img src="./Images/movie3.png" alt="Movie Poster" class="movie-img" />
+          <div class="movie-info">
+            <span class="tag tag-2d">2D</span>
+            <span class="tag tag-t18">T18</span>
+            <h3 class="movie-title">Mickey 17 (T18)</h3>
+            <div class="movie-actions">
+              <a href="#" class="watch-trailer">Watch trailer</a>
+              <button class="btn-ticket" data-movie="Mickey 17">Buy Tickets</button>
             </div>
           </div>
-          <div class="movie-card">
-            <img
-              src="./Images/phimma.png"
-              alt="Movie Poster"
-              class="movie-img"
-            />
-            <div class="movie-info">
-              <span class="tag tag-2d">2D</span>
-              <span class="tag tag-t16">T16</span>
-              <p class="movie-date">Premiere: 21/03/2025</p>
-              <h3 class="movie-title">DOMINION OF DARKNESS (T18)</h3>
-              <div class="movie-actions">
-                <a href="#" class="watch-trailer">Watch trailer</a>
-                <button class="btn-ticket">Buy Tickets</button>
-              </div>
-            </div>
-          </div>
-          <div class="movie-card">
-            <img
-              src="./Images/phimquy.png"
-              alt="Movie Poster"
-              class="movie-img"
-            />
-            <div class="movie-info">
-              <span class="tag tag-2d">2D</span>
-              <span class="tag tag-t16">T16</span>
-              <p class="movie-date">Premiere: 21/03/2025</p>
-              <h3 class="movie-title">
-                EXORCISM CHRONICLES: THE BEGINNING (T13)
-              </h3>
-              <div class="movie-actions">
-                <a href="#" class="watch-trailer">Watch trailer</a>
-                <button class="btn-ticket">Buy Tickets</button>
-              </div>
+        </div>
+        <div class="movie-card">
+          <img src="./Images/movie4.png" alt="Movie Poster" class="movie-img" />
+          <div class="movie-info">
+            <span class="tag tag-2d">2D</span>
+            <span class="tag tag-t18">T18</span>
+            <h3 class="movie-title">THE MONKEY (T18)</h3>
+            <div class="movie-actions">
+              <a href="#" class="watch-trailer">Watch trailer</a>
+              <button class="btn-ticket" data-movie="THE MONKEY">Buy Tickets</button>
             </div>
           </div>
         </div>
       </div>
-    </section>
+      <span class="dots">...</span>
+      <button class="btn-see-more">
+        <span class="text">See more</span>
+      </button>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="container">
-        <div class="footer-grid">
-          <div class="footer-column">
-            <h3 class="footer-title">
-              Entertainment Joint Stock Company - Cineplex Cinema
+  <!-- Coming Soon Section -->
+  <section class="coming-soon">
+    <div class="container">
+      <h3 class="section-title">Coming Soon</h3>
+      <div class="movie-grid">
+        <div class="movie-card">
+          <img src="./Images/3.png" alt="Movie Poster" class="movie-img" />
+          <div class="movie-info">
+            <span class="tag tag-2d">2D</span>
+            <span class="tag tag-t18">T18</span>
+            <p class="movie-date">Premiere: 21/03/2025</p>
+            <h3 class="movie-title">FORBIDDEN FAIRYTALE (T18)</h3>
+            <div class="movie-actions">
+              <a href="#" class="watch-trailer">Watch trailer</a>
+              <button class="btn-ticket" data-movie="FORBIDDEN FAIRYTALE">Buy Tickets</button>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="./Images/2.png" alt="Movie Poster" class="movie-img" />
+          <div class="movie-info">
+            <span class="tag tag-2d">2D</span>
+            <span class="tag tag-t16">T16</span>
+            <p class="movie-date">Premiere: 21/03/2025</p>
+            <h3 class="movie-title">YOU ARE THE APPLE OF MY EYE (T16)</h3>
+            <div class="movie-actions">
+              <a href="#" class="watch-trailer">Watch trailer</a>
+              <button class="btn-ticket" data-movie="YOU ARE THE APPLE OF MY EYE">Buy Tickets</button>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="./Images/phimma.png" alt="Movie Poster" class="movie-img" />
+          <div class="movie-info">
+            <span class="tag tag-2d">2D</span>
+            <span class="tag tag-t16">T16</span>
+            <p class="movie-date">Premiere: 21/03/2025</p>
+            <h3 class="movie-title">DOMINION OF DARKNESS (T18)</h3>
+            <div class="movie-actions">
+              <a href="#" class="watch-trailer">Watch trailer</a>
+              <button class="btn-ticket" data-movie="DOMINION OF DARKNESS">Buy Tickets</button>
+            </div>
+          </div>
+        </div>
+        <div class="movie-card">
+          <img src="./Images/phimquy.png" alt="Movie Poster" class="movie-img" />
+          <div class="movie-info">
+            <span class="tag tag-2d">2D</span>
+            <span class="tag tag-t16">T16</span>
+            <p class="movie-date">Premiere: 21/03/2025</p>
+            <h3 class="movie-title">
+              EXORCISM CHRONICLES: THE BEGINNING (T13)
             </h3>
-            <p>Address: 613 Au Co, Tan Binh, Ho Chi Minh City</p>
-            <p>
-              Business registration certificate: 0303675393, issued on July 31,
-              2008
-            </p>
-            <p>© 2025 Cineplex. Copyright registration in Vietnam.</p>
-            <img
-              src="./Images/footer-logo.png"
-              alt="Footer Logo"
-              class="footer-logo"
-            />
-          </div>
-          <div class="footer-column">
-            <h3 class="footer-title">Policy & Terms</h3>
-            <a href="#" class="footer-link">Terms of use</a>
-            <a href="#" class="footer-link">Privacy policy</a>
-            <a href="#" class="footer-link">Payment guide</a>
-            <a href="#" class="footer-link">Exchange/return policy</a>
-          </div>
-          <div class="footer-column">
-            <h3 class="footer-title">Contact us</h3>
-            <p>Hotline: 1234 56789</p>
-            <p>Email: hiidap@cvr.vn</p>
-            <p>Working hours: 8:00 - 22:00 (all days including Tet holiday)</p>
-            <div class="social-icons">
-              <img
-                src="./Images/social1.png"
-                alt="Social Icon"
-                class="social-icon"
-              />
-              <img
-                src="./Images/social2.png"
-                alt="Social Icon"
-                class="social-icon"
-              />
-              <img
-                src="./Images/social3.png"
-                alt="Social Icon"
-                class="social-icon"
-              />
+            <div class="movie-actions">
+              <a href="#" class="watch-trailer">Watch trailer</a>
+              <button class="btn-ticket" data-movie="EXORCISM CHRONICLES: THE BEGINNING">Buy Tickets</button>
             </div>
           </div>
         </div>
       </div>
-    </footer>
+    </div>
+  </section>
 
-    <script src="script.js"></script>
-  </body>
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-column">
+          <h3 class="footer-title">
+            Entertainment Joint Stock Company - Cineplex Cinema
+          </h3>
+          <p>Address: 613 Au Co, Tan Binh, Ho Chi Minh City</p>
+          <p>
+            Business registration certificate: 0303675393, issued on July 31,
+            2008
+          </p>
+          <p>© 2025 Cineplex. Copyright registration in Vietnam.</p>
+          <img src="./Images/footer-logo.png" alt="Footer Logo" class="footer-logo" />
+        </div>
+        <div class="footer-column">
+          <h3 class="footer-title">Policy & Terms</h3>
+          <a href="#" class="footer-link">Terms of use</a>
+          <a href="#" class="footer-link">Privacy policy</a>
+          <a href="#" class="footer-link">Payment guide</a>
+          <a href="#" class="footer-link">Exchange/return policy</a>
+        </div>
+        <div class="footer-column">
+          <h3 class="footer-title">Contact us</h3>
+          <p>Hotline: 1234 56789</p>
+          <p>Email: hiidap@cvr.vn</p>
+          <p>Working hours: 8:00 - 22:00 (all days including Tet holiday)</p>
+          <div class="social-icons">
+            <img src="./Images/social1.png" alt="Social Icon" class="social-icon" />
+            <img src="./Images/social2.png" alt="Social Icon" class="social-icon" />
+            <img src="./Images/social3.png" alt="Social Icon" class="social-icon" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  <div class="popup-overlay" id="seat-selection-popup">
+    <div class="popup-content">
+      <button class="close-btn" id="close-popup-btn">×</button>
+      <h2 class="popup-movie-title" id="popup-movie-title">Chọn ghế cho phim: Unknown Movie</h2>
+      <p class="popup-description">
+        Vui lòng chọn rạp, xuất chiếu và ghế. Ghế đã chọn:
+        <span class="selected-count" id="selected-seats-count">0</span>
+      </p>
+      <div class="selection-container clearfix">
+        <div class="seat-grid-container">
+          <div class="screen-placeholder">MÀN HÌNH</div>
+          <div class="seat-row clearfix">
+            <span class="seat-row-label">A</span>
+            <div class="seat" data-seat="A1">1</div>
+            <div class="seat" data-seat="A2">2</div>
+            <div class="seat" data-seat="A3">3</div>
+            <div class="seat occupied" data-seat="A4">4</div>
+            <div class="seat-spacer"></div>
+            <div class="seat" data-seat="A5">5</div>
+            <div class="seat" data-seat="A6">6</div>
+            <div class="seat" data-seat="A7">7</div>
+            <div class="seat occupied" data-seat="A8">8</div>
+            <div class="seat" data-seat="A9">9</div>
+            <div class="seat" data-seat="A10">10</div>
+          </div>
+          <div class="seat-row clearfix">
+            <span class="seat-row-label">B</span>
+            <div class="seat" data-seat="B1">1</div>
+            <div class="seat" data-seat="B2">2</div>
+            <div class="seat" data-seat="B3">3</div>
+            <div class="seat" data-seat="B4">4</div>
+            <div class="seat-spacer"></div>
+            <div class="seat" data-seat="B5">5</div>
+            <div class="seat" data-seat="B6">6</div>
+            <div class="seat" data-seat="B7">7</div>
+            <div class="seat" data-seat="B8">8</div>
+            <div class="seat" data-seat="B9">9</div>
+            <div class="seat" data-seat="B10">10</div>
+          </div>
+          <div class="seat-row clearfix">
+            <span class="seat-row-label">C</span>
+            <div class="seat occupied" data-seat="C1">1</div>
+            <div class="seat" data-seat="C2">2</div>
+            <div class="seat" data-seat="C3">3</div>
+            <div class="seat" data-seat="C4">4</div>
+            <div class="seat-spacer"></div>
+            <div class="seat" data-seat="C5">5</div>
+            <div class="seat " data-seat="C6">6</div>
+            <div class="seat" data-seat="C7">7</div>
+            <div class="seat" data-seat="C8">8</div>
+            <div class="seat" data-seat="C9">9</div>
+            <div class="seat" data-seat="C10">10</div>
+          </div>
+          <div class="seat-row clearfix">
+            <span class="seat-row-label">D</span>
+            <div class="seat" data-seat="D1">1</div>
+            <div class="seat" data-seat="D2">2</div>
+            <div class="seat" data-seat="D3">3</div>
+            <div class="seat" data-seat="D4">4</div>
+            <div class="seat-spacer"></div>
+            <div class="seat" data-seat="D5">5</div>
+            <div class="seat occupied" data-seat="D6">6</div>
+            <div class="seat occupied" data-seat="D7">7</div>
+            <div class="seat" data-seat="D8">8</div>
+            <div class="seat" data-seat="D9">9</div>
+            <div class="seat" data-seat="D10">10</div>
+          </div>
+          <div class="seat-row clearfix">
+            <span class="seat-row-label">E</span>
+            <div class="seat" data-seat="E1">1</div>
+            <div class="seat" data-seat="E2">2</div>
+            <div class="seat" data-seat="E3">3</div>
+            <div class="seat" data-seat="E4">4</div>
+            <div class="seat-spacer"></div>
+            <div class="seat" data-seat="E5">5</div>
+            <div class="seat" data-seat="E6">6</div>
+            <div class="seat" data-seat="E7">7</div>
+            <div class="seat occupied" data-seat="E8">8</div>
+            <div class="seat occupied" data-seat="E9">9</div>
+            <div class="seat" data-seat="E10">10</div>
+          </div>
+        </div>
+        <div class="cinema-selection">
+          <label for="cinema-select">Chọn rạp:</label>
+          <select id="cinema-select">
+            <option value="tan-binh">Cineplex Tân Bình</option>
+            <option value="quan-7">Cineplex Quận 7</option>
+            <option value="go-vap">Cineplex Gò Vấp</option>
+          </select>
+        </div>
+        <div class="showtime-selection">
+          <label for="showtime-select">Chọn xuất chiếu:</label>
+          <select id="showtime-select">
+            <option value="19:00">19:00</option>
+            <option value="21:00">21:00</option>
+            <option value="23:00">23:00</option>
+          </select>
+        </div>
+      </div>
+      <div class="price-legend-container clearfix">
+        <div class="total-price-display">
+          Tổng Cộng: <span class="price-value" id="total-price">0 VND</span>
+        </div>
+        <div class="legend-items">
+          <span class="legend-item">
+            <span class="legend-color legend-available"></span> Trống
+          </span>
+          <span class="legend-item">
+            <span class="legend-color legend-selected"></span> Đã chọn
+          </span>
+          <span class="legend-item">
+            <span class="legend-color legend-occupied"></span> Đã đặt
+          </span>
+        </div>
+      </div>
+      <div class="confirm-button-container">
+        <button class="confirm-btn" id="confirm-booking-btn">Xác Nhận Đặt Vé</button>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
 </html>
