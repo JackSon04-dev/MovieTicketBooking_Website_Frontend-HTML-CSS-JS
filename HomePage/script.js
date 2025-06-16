@@ -1,31 +1,27 @@
+/* Thêm sự kiện khi tài liệu được tải hoàn tất */
 document.addEventListener("DOMContentLoaded", () => {
-  // Handle "Buy Tickets" button clicks
-  const ticketButtons = document.querySelectorAll(".btn-ticket");
-  ticketButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      alert("Đã mua hehehehe");
-      // Replace with actual redirect or modal logic
+    /* Xử lý sự kiện click cho các nút mua vé */
+    const ticketButtons = document.querySelectorAll(".btn-ticket");
+    ticketButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+            /* Hiển thị thông báo mua vé thành công */
+            alert("Đã mua hehehehe");
+            // Thay bằng logic chuyển hướng hoặc modal thực tế
+        });
     });
-  });
 
-  // Handle "Buy Popcorn" button click
-  const popcornButton = document.querySelector(".btn-popcorn");
-  popcornButton.addEventListener("click", () => {
-    alert("Đã mua bắp nước");
-    // Replace with actual redirect or modal logic
-  });
+    /* Xử lý sự kiện click cho nút mua bắp nước */
+    const popcornButton = document.querySelector(".btn-popcorn");
+    popcornButton.addEventListener("click", () => {
+        /* Hiển thị thông báo mua bắp nước */
+        alert("Đã mua bắp nước");
+        // Thay bằng logic chuyển hướng hoặc modal thực tế
+    });
 
-  // Handle "See more" button click
-  const seeMoreButton = document.querySelector(".btn-see-more");
-  seeMoreButton.addEventListener("click", () => {
-    alert("Đang tải danh sách phim...");
-    // Replace with actual logic to load more movies
-  });
-
-  // Handle "All incentives" button click
-  const incentivesButton = document.querySelector(".btn-all-incentives");
-  incentivesButton.addEventListener("click", () => {
-    alert("Redirecting to all promotions page...");
-    // Replace with actual redirect
-  });
-});
+    /* Xử lý sự kiện click cho nút xem thêm */
+    const seeMoreButton = document.querySelector(".btn-see-more");
+    seeMoreButton.addEventListener("click", () => {
+        /* Hiển thị thông báo đang tải danh sách phim */
+        alert("Đang tải danh sách phim...");
+        // Thay bằng logic tải thêm phim
+    });
