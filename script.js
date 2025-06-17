@@ -1,124 +1,243 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Hamburger Menu
-  const hamburger = document.querySelector(".hamburger");
-  const menuItems = document.querySelector(".menu-items");
-  if (hamburger && menuItems) {
-    hamburger.addEventListener("click", () => {
-      menuItems.classList.toggle("active");
-      hamburger.textContent = menuItems.classList.contains("active") ? "✕" : "☰";
-    });
+// Hàm định dạng tiền tệ Việt Nam
+function formatCurrency(amount) {
+  return parseInt(amount || 0).toLocaleString('vi-VN') + '₫';
+}
+
+// Khi trang đã tải xong
+document.addEventListener('DOMContentLoaded', () => {
+  // Khai báo các phần tử popup và nút
+  const seatPopup = document.getElementById('seat-selection-popup');
+  const closeSeatBtn = document.getElementById('close-popup-btn');
+  const paymentPopup = document.getElementById('payment-popup');
+  const closePaymentBtn = document.getElementById('close-payment-btn');
+  const ticketButtons = document.querySelectorAll('.btn-ticket');
+  const seats = document.querySelectorAll('.seat:not(.occupied)');
+  const selectedSeatsCount = document.getElementById('selected-seats-count');
+  const totalPriceElement = document.getElementById('total-price');
+  const cinemaSelect = document.getElementById('cinema-select');
+  const showtimeSelect = document.getElementById('showtime-select');
+  const confirmBookingBtn = document.getElementById('confirm-booking-btn');
+  const hamburger = document.querySelector('.hamburger');
+  const menuItems = document.querySelector('.menu-items');
+  const popcornCombo = document.getElementById('popcorn-combo');
+  const popcornQuantity = document.getElementById('popcorn-quantity');
+  const popupMovieTitle = document.getElementById('popup-movie-title');
+  const popupCinemaName = document.getElementById('popup-cinema-name');
+  const popupHallName = document.getElementById('popup-hall-name');
+  const popupShowDate = document.getElementById('popup-show-date');
+  const popupShowTime = document.getElementById('popup-show-time');
+  const popupSelectedSeats = document.getElementById('popup-selected-seats');
+  const popupComboName = document.getElementById('popup-combo-name');
+  const popupComboQuantity = document.getElementById('popup-combo-quantity');
+  const popupSubtotal = document.getElementById('popup-subtotal');
+  const popupTotalAmount = document.getElementById('popup-total-amount');
+  const popupDiscountCode = document.getElementById('popup-discount-code');
+  const popupApplyDiscountBtn = document.getElementById('popup-apply-discount-btn');
+  const popupConfirmPaymentBtn = document.getElementById('popup-confirm-payment-btn');
+
+  // Kiểm tra các phần tử quan trọng
+  if (!paymentPopup || !confirmBookingBtn) {
+    console.error('Error: paymentPopup or confirmBookingBtn not found in the document.');
+    return;
   }
 
-  // Popup Elements
-  const seatSelectionPopup = document.getElementById("seat-selection-popup");
-  const closePopupBtn = document.getElementById("close-popup-btn");
-  const movieTitleSpan = document.getElementById("popup-movie-title");
-  const selectedSeatsCount = document.getElementById("selected-seats-count");
-  const totalPriceSpan = document.getElementById("total-price");
-  const confirmBookingBtn = document.getElementById("confirm-booking-btn");
-  const cinemaSelect = document.getElementById("cinema-select");
-  const showtimeSelect = document.getElementById("showtime-select");
-  const seats = document.querySelectorAll(".seat:not(.occupied)");
-
-  // Debug log
-  console.log("Popup element:", seatSelectionPopup);
-  console.log("Ticket buttons:", document.querySelectorAll(".btn-ticket").length);
-
-  // Ticket Price
-  const seatPrice = 120000; // VND
+  // Khởi tạo mảng ghế đã chọn và giá vé
   let selectedSeats = [];
+  const ticketPrice = 75000;
+  let bookingData = {};
 
-  // Update UI
-  function updateUI() {
-    selectedSeatsCount.textContent = selectedSeats.length;
-    const totalPrice = selectedSeats.length * seatPrice;
-    totalPriceSpan.textContent = totalPrice.toLocaleString("vi-VN") + " VND";
+  // Cập nhật giá khi thay đổi combo hoặc số lượng
+  function updatePrice() {
+    const count = selectedSeats.length;
+    selectedSeatsCount.textContent = count;
+    const combo = popcornCombo?.value || 'none';
+    const quantity = parseInt(popcornQuantity?.value) || 0;
+    let popcornPrice = 0;
+    if (combo !== 'none' && popcornCombo) {
+      popcornPrice = parseInt(popcornCombo.querySelector(`option[value="${combo}"]`)?.dataset.price) * quantity || 0;
+    }
+    const totalPrice = (count * ticketPrice) + popcornPrice;
+    totalPriceElement.textContent = `${formatCurrency(totalPrice)}`;
   }
 
-  // Open Popup
-  function openPopup(movieTitle) {
-    console.log("Opening popup for:", movieTitle);
-    movieTitleSpan.textContent = "Chọn ghế cho phim: " + movieTitle;
-    seatSelectionPopup.classList.add("active");
-    updateUI();
+  // Mở popup
+  function openPopup(popup) {
+    if (popup) {
+      popup.classList.add('active');
+      console.log('Opening popup:', popup.id);
+    } else {
+      console.error('Error: Popup element is null');
+    }
   }
 
-  // Close Popup
-  function closePopup() {
-    seatSelectionPopup.classList.remove("active");
-    selectedSeats.forEach((seatId) => {
-      const seat = document.querySelector(`.seat[data-seat="${seatId}"]`);
-      seat.classList.remove("selected");
-    });
+  // Đóng popup
+  function closePopup(popup) {
+    if (popup && popup.classList.contains('active')) {
+      popup.classList.remove('active');
+      console.log('Closing popup:', popup.id);
+    }
+  }
+
+  // Mở popup chọn ghế
+  function openSeatPopup(movieTitle) {
+    if (seatPopup) {
+      popupMovieTitle.textContent = `Chọn ghế cho phim: ${movieTitle || 'Unknown Movie'}`;
+      openPopup(seatPopup);
+    } else {
+      console.error('Error: seatPopup not found');
+    }
+  }
+
+  // Đóng tất cả popup và reset
+  function closeAllPopups() {
+    closePopup(seatPopup);
+    closePopup(paymentPopup);
     selectedSeats = [];
-    updateUI();
+    seats.forEach(seat => seat.classList.remove('selected'));
+    updatePrice();
   }
 
-  // Handle Seat Selection
-  seats.forEach((seat) => {
-    seat.addEventListener("click", () => {
-      const seatId = seat.dataset.seat;
-      if (seat.classList.contains("selected")) {
-        seat.classList.remove("selected");
-        selectedSeats = selectedSeats.filter((id) => id !== seatId);
-      } else if (!seat.classList.contains("occupied")) {
-        seat.classList.add("selected");
-        selectedSeats.push(seatId);
+  // Xử lý nút "Buy Tickets"
+  ticketButtons.forEach(button => {
+    button.addEventListener('click', (e) => {
+      if (button.closest('.coming-soon')) {
+        e.preventDefault();
+        alert('Phim này sắp chiếu, chưa thể mua vé. Vui lòng quay lại sau!');
+        return;
       }
-      updateUI();
+      openSeatPopup(button.dataset.movie);
     });
   });
 
-  // Handle Close Button
-  closePopupBtn.addEventListener("click", closePopup);
+  // Xử lý đóng popup chọn ghế
+  closeSeatBtn.addEventListener('click', closeAllPopups);
 
-  // Handle Confirm Booking
-  confirmBookingBtn.addEventListener("click", () => {
-    if (selectedSeats.length === 0) {
-      alert("Vui lòng chọn ít nhất một ghế.");
+  // Xử lý chọn ghế
+  seats.forEach(seat => {
+    seat.addEventListener('click', () => {
+      if (!seat.classList.contains('occupied')) {
+        seat.classList.toggle('selected');
+        const seatId = seat.dataset.seat;
+        if (selectedSeats.includes(seatId)) {
+          selectedSeats = selectedSeats.filter(id => id !== seatId);
+        } else {
+          selectedSeats.push(seatId);
+        }
+        updatePrice();
+      }
+    });
+  });
+
+  // Xử lý "Xác nhận đặt vé"
+  confirmBookingBtn.addEventListener('click', () => {
+    if (!seatPopup || !confirmBookingBtn) {
+      console.error('seatPopup or confirmBookingBtn not found');
       return;
     }
-    const cinema = cinemaSelect.options[cinemaSelect.selectedIndex].text;
-    const showtime = showtimeSelect.value;
-    const totalPrice = selectedSeats.length * seatPrice;
-    const confirmation = confirm(
-      `Xác nhận đặt vé:\nPhim: ${movieTitleSpan.textContent.replace("Chọn ghế cho phim: ", "")}\nRạp: ${cinema}\nXuất chiếu: ${showtime}\nGhế: ${selectedSeats.join(", ")}\nTổng: ${totalPrice.toLocaleString("vi-VN")} VND`
-    );
-    if (confirmation) {
-      selectedSeats.forEach((seatId) => {
-        const seat = document.querySelector(`.seat[data-seat="${seatId}"]`);
-        seat.classList.add("occupied");
-        seat.classList.remove("selected");
-      });
-      alert("Đặt vé thành công!");
-      closePopup();
+    if (selectedSeats.length === 0) {
+      alert('Vui lòng chọn ít nhất một ghế!');
+      return;
+    }
+    const currentDate = new Date();
+    const timeRange = `${currentDate.getHours()}:40 - ${currentDate.getHours() + 1}:40`;
+    const showDate = currentDate.toLocaleDateString('en-GB');
+    const combo = popcornCombo?.value || 'none';
+    const quantity = parseInt(popcornQuantity?.value) || 0;
+    let popcornPrice = 0;
+    let comboName = 'Không chọn';
+    if (combo !== 'none' && popcornCombo) {
+      popcornPrice = parseInt(popcornCombo.querySelector(`option[value="${combo}"]`)?.dataset.price) * quantity || 0;
+      comboName = popcornCombo.querySelector(`option[value="${combo}"]`)?.text || 'Không chọn';
+    }
+    bookingData = {
+      movie: popupMovieTitle.textContent.replace('Chọn ghế cho phim: ', ''),
+      cinema: cinemaSelect?.options[cinemaSelect.selectedIndex]?.text || 'Unknown Cinema',
+      showtime: showtimeSelect?.value || 'Unknown Time',
+      seats: selectedSeats,
+      ticketPrice: selectedSeats.length * ticketPrice,
+      time: timeRange,
+      date: showDate,
+      popcornCombo: comboName,
+      popcornQuantity: quantity,
+      popcornPrice: popcornPrice,
+      totalPrice: (selectedSeats.length * ticketPrice) + popcornPrice
+    };
+    localStorage.setItem('bookingData', JSON.stringify(bookingData));
+
+    // Mở popup thanh toán và cập nhật thông tin
+    closePopup(seatPopup);
+    updatePaymentPopup();
+    openPopup(paymentPopup);
+  });
+
+  // Cập nhật thông tin trong popup thanh toán
+  function updatePaymentPopup() {
+    const data = JSON.parse(localStorage.getItem('bookingData')) || {};
+    popupCinemaName.textContent = data.cinema || 'Unknown Cinema';
+    popupHallName.textContent = 'Cinema 3 - 2D'; // Giả định cố định
+    popupShowDate.textContent = data.date || 'Unknown Date';
+    popupShowTime.textContent = data.time || 'Unknown Time';
+    popupSelectedSeats.textContent = data.seats?.join(', ') || 'No seats';
+    popupComboName.textContent = data.popcornCombo || 'Không chọn';
+    popupComboQuantity.textContent = data.popcornQuantity ? `Số lượng: ${data.popcornQuantity}` : 'Số lượng: 0';
+    const rawTotal = parseInt(data.totalPrice) || 0;
+    popupSubtotal.textContent = formatCurrency(rawTotal);
+    popupTotalAmount.textContent = formatCurrency(rawTotal);
+    popupMovieTitle.textContent = `Chọn ghế cho phim: ${data.movie || 'Unknown Movie'}`;
+  }
+
+  // Xử lý click ra ngoài để đóng popup thanh toán và quay lại popup chọn ghế
+  paymentPopup?.addEventListener('click', (e) => {
+    if (e.target === paymentPopup) {
+      closePopup(paymentPopup);
+      openPopup(seatPopup);
     }
   });
 
-  // Handle "Buy Tickets" Button Clicks
-  const ticketButtons = document.querySelectorAll(".btn-ticket");
-  ticketButtons.forEach((button) => {
-    button.addEventListener("click", () => {
-      const movieTitle = button.dataset.movie || "Unknown Movie";
-      openPopup(movieTitle);
-    });
+  // Xử lý đóng popup thanh toán
+  closePaymentBtn?.addEventListener('click', () => {
+    closePopup(paymentPopup);
+    openPopup(seatPopup);
   });
 
-  // Handle "Buy Popcorn" Button Click
-  const popcornButton = document.querySelector(".btn-popcorn");
-  popcornButton.addEventListener("click", () => {
-    alert("Đã mua bắp nước");
+  // Cập nhật giá khi thay đổi combo hoặc số lượng
+  popcornCombo?.addEventListener('change', updatePrice);
+  popcornQuantity?.addEventListener('change', updatePrice);
+
+  // Xử lý menu hamburger
+  hamburger?.addEventListener('click', () => {
+    menuItems.classList.toggle('active');
+    hamburger.textContent = menuItems.classList.contains('active') ? '✕' : '☰';
   });
 
-  // Handle "See more" Button Click
-  const seeMoreButton = document.querySelector(".btn-see-more");
-  seeMoreButton.addEventListener("click", () => {
-    alert("Loading more movies...");
+  // Xử lý áp dụng mã giảm giá
+  popupApplyDiscountBtn?.addEventListener('click', () => {
+    const discountCode = popupDiscountCode.value.trim().toUpperCase();
+    let finalTotal = parseInt(bookingData.totalPrice) || 0;
+
+    if (discountCode === 'DISCOUNT10') {
+      finalTotal = Math.round(finalTotal * 0.9); // Giảm 10%
+      alert('Áp dụng mã giảm giá 10% thành công!');
+    } else if (discountCode === 'TINDEPTRAI' || discountCode === 'SONDEPTRAI') {
+      finalTotal = 0;
+      alert('Áp dụng mã giảm giá 100% thành công!');
+    } else {
+      finalTotal = parseInt(bookingData.totalPrice) || 0;
+      alert('Mã giảm giá không hợp lệ!');
+    }
+
+    popupTotalAmount.textContent = formatCurrency(finalTotal);
   });
 
-  // Handle "All incentives" Button Click
-  const incentivesButton = document.querySelector(".btn-all-incentives");
-  incentivesButton.addEventListener("click", () => {
-    alert("Redirecting to all promotions page...");
+  // Xử lý nút "Thanh Toán"
+  popupConfirmPaymentBtn?.addEventListener('click', () => {
+    const textValue = popupTotalAmount.textContent.trim(); // Lấy giá trị và loại bỏ khoảng trắng
+    const cleanValue = textValue.replace('₫', '').replace(/\./g, ''); // Loại bỏ '₫' và dấu chấm '.'
+    const finalTotal = parseInt(cleanValue) || 0; // Chuyển đổi thành số nguyên
+    alert(`Thanh toán thành công với tổng: ${formatCurrency(finalTotal)}!`);
+
+    // Xóa dữ liệu đặt vé và reset
+    localStorage.removeItem('bookingData');
+    closeAllPopups();
   });
 });

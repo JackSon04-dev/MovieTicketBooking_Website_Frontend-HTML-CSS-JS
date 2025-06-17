@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cineplex Cinema</title>
+  <title>CineVerse Cinema</title>
   <link
     href="https://fonts.googleapis.com/css2?family=Anton&family=Josefin+Sans:wght@400;600;700&family=Roboto:wght@400;700&display=swap"
     rel="stylesheet" />
@@ -23,7 +23,7 @@
           <button class="btn-popcorn">Buy Popcorn</button>
         </div>
         <div class="user-section">
-          <input type="text" placeholder="Find movies, theaters" class="search-input" />
+          <input type="text" placeholder="Tìm phim, rạp" class="search-input" />
           <div class="user-profile">
             <span>User</span>
             <img src="./Images/avatar.jpg" alt="User Avatar" class="avatar" />
@@ -45,19 +45,19 @@
   </section>
 
   <!-- Movies Section -->
-  <section class="movies">
+  <section id="now-showing" class="movies">
     <div class="container">
-      <h3 class="section-title">The movie is showing</h3>
+      <h3 class="section-title">Phim Đang Chiếu</h3>
       <div class="movie-grid">
         <div class="movie-card">
           <img src="./Images/movie1.png" alt="Movie Poster" class="movie-img" />
           <div class="movie-info">
             <span class="tag tag-2d">2D</span>
             <span class="tag tag-t18">T18</span>
-            <h3 class="movie-title">Devil entered Trang (T18)</h3>
+            <h3 class="movie-title">Quỷ Nhập Tràng (T18)</h3>
             <div class="movie-actions">
-              <a href="#" class="watch-trailer">Watch trailer</a>
-              <button class="btn-ticket" data-movie="Devil entered Trang">Buy Tickets</button>
+              <a href="#" class="watch-trailer">Xem Trailer</a>
+              <button class="btn-ticket" data-movie="Quỷ Nhập Tràng">Buy Tickets</button>
             </div>
           </div>
         </div>
@@ -68,7 +68,7 @@
             <span class="tag tag-t16">T16</span>
             <h3 class="movie-title">Red Man (T16)</h3>
             <div class="movie-actions">
-              <a href="#" class="watch-trailer">Watch trailer</a>
+              <a href="#" class="watch-trailer">Xem Trailer</a>
               <button class="btn-ticket" data-movie="Red Man">Buy Tickets</button>
             </div>
           </div>
@@ -80,7 +80,7 @@
             <span class="tag tag-t18">T18</span>
             <h3 class="movie-title">Mickey 17 (T18)</h3>
             <div class="movie-actions">
-              <a href="#" class="watch-trailer">Watch trailer</a>
+              <a href="#" class="watch-trailer">Xem Trailer</a>
               <button class="btn-ticket" data-movie="Mickey 17">Buy Tickets</button>
             </div>
           </div>
@@ -92,7 +92,7 @@
             <span class="tag tag-t18">T18</span>
             <h3 class="movie-title">THE MONKEY (T18)</h3>
             <div class="movie-actions">
-              <a href="#" class="watch-trailer">Watch trailer</a>
+              <a href="#" class="watch-trailer">Xem Trailer</a>
               <button class="btn-ticket" data-movie="THE MONKEY">Buy Tickets</button>
             </div>
           </div>
@@ -106,33 +106,33 @@
   </section>
 
   <!-- Coming Soon Section -->
-  <section class="coming-soon">
+  <section id="upcoming-movie" class="coming-soon">
     <div class="container">
-      <h3 class="section-title">Coming Soon</h3>
+      <h3 class="section-title">PHIM SẮP CHIẾU</h3>
       <div class="movie-grid">
         <div class="movie-card">
           <img src="./Images/3.png" alt="Movie Poster" class="movie-img" />
           <div class="movie-info">
             <span class="tag tag-2d">2D</span>
             <span class="tag tag-t18">T18</span>
-            <p class="movie-date">Premiere: 21/03/2025</p>
-            <h3 class="movie-title">FORBIDDEN FAIRYTALE (T18)</h3>
+            <p class="movie-date">Khởi Chiếu: 21/03/2025</p>
+            <h3 class="movie-title">Nghề Siêu Khó (T18)</h3>
             <div class="movie-actions">
-              <a href="#" class="watch-trailer">Watch trailer</a>
-              <button class="btn-ticket" data-movie="FORBIDDEN FAIRYTALE">Buy Tickets</button>
+              <a href="#" class="watch-trailer">Xem Trailer</a>
+              <button class="btn-ticket" data-movie="Nghề Siêu Khó">Buy Tickets</button>
             </div>
           </div>
         </div>
         <div class="movie-card">
-          <img src="./Images/2.png" alt="Movie Poster" class="movie-img" />
+          <img src="./Images/dieuUocCuoiCung" alt="Movie Poster" class="movie-img" />
           <div class="movie-info">
             <span class="tag tag-2d">2D</span>
             <span class="tag tag-t16">T16</span>
-            <p class="movie-date">Premiere: 21/03/2025</p>
-            <h3 class="movie-title">YOU ARE THE APPLE OF MY EYE (T16)</h3>
+            <p class="movie-date">Khởi Chiếu: 04/07/2025</p>
+            <h3 class="movie-title">Điều Ước Cuối Cùng (T16)</h3>
             <div class="movie-actions">
-              <a href="#" class="watch-trailer">Watch trailer</a>
-              <button class="btn-ticket" data-movie="YOU ARE THE APPLE OF MY EYE">Buy Tickets</button>
+              <a href="#" class="watch-trailer">Xem Trailer</a>
+              <button class="btn-ticket" data-movie="Điều Ước Cuối Cùng">Buy Tickets</button>
             </div>
           </div>
         </div>
@@ -141,11 +141,11 @@
           <div class="movie-info">
             <span class="tag tag-2d">2D</span>
             <span class="tag tag-t16">T16</span>
-            <p class="movie-date">Premiere: 21/03/2025</p>
-            <h3 class="movie-title">DOMINION OF DARKNESS (T18)</h3>
+            <p class="movie-date">Khởi Chiếu: 21/03/2025</p>
+            <h3 class="movie-title">Nghi Lễ Trục Quỷ (T18)</h3>
             <div class="movie-actions">
-              <a href="#" class="watch-trailer">Watch trailer</a>
-              <button class="btn-ticket" data-movie="DOMINION OF DARKNESS">Buy Tickets</button>
+              <a href="#" class="watch-trailer">Xem Trailer</a>
+              <button class="btn-ticket" data-movie="Nghi Lễ Trục Quỷ">Buy Tickets</button>
             </div>
           </div>
         </div>
@@ -154,13 +154,13 @@
           <div class="movie-info">
             <span class="tag tag-2d">2D</span>
             <span class="tag tag-t16">T16</span>
-            <p class="movie-date">Premiere: 21/03/2025</p>
+            <p class="movie-date">Khởi Chiếu: 21/03/2025</p>
             <h3 class="movie-title">
-              EXORCISM CHRONICLES: THE BEGINNING (T13)
+              Trừ Tà Ký (T13)
             </h3>
             <div class="movie-actions">
-              <a href="#" class="watch-trailer">Watch trailer</a>
-              <button class="btn-ticket" data-movie="EXORCISM CHRONICLES: THE BEGINNING">Buy Tickets</button>
+              <a href="#" class="watch-trailer">Xem Trailer</a>
+              <button class="btn-ticket" data-movie="Trừ Tà Ký">Buy Tickets</button>
             </div>
           </div>
         </div>
@@ -170,41 +170,59 @@
 
   <!-- Footer -->
   <footer class="footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-column">
-          <h3 class="footer-title">
-            Entertainment Joint Stock Company - Cineplex Cinema
-          </h3>
-          <p>Address: 613 Au Co, Tan Binh, Ho Chi Minh City</p>
-          <p>
-            Business registration certificate: 0303675393, issued on July 31,
-            2008
-          </p>
-          <p>© 2025 Cineplex. Copyright registration in Vietnam.</p>
-          <img src="./Images/footer-logo.png" alt="Footer Logo" class="footer-logo" />
+    <div class="footer-container">
+      <!-- Footer Column 1: Logo & Slogan & Social Media -->
+      <div class="footer-column">
+        <div class="footer-logo">
+          <span>CineVerse</span>
         </div>
-        <div class="footer-column">
-          <h3 class="footer-title">Policy & Terms</h3>
-          <a href="#" class="footer-link">Terms of use</a>
-          <a href="#" class="footer-link">Privacy policy</a>
-          <a href="#" class="footer-link">Payment guide</a>
-          <a href="#" class="footer-link">Exchange/return policy</a>
-        </div>
-        <div class="footer-column">
-          <h3 class="footer-title">Contact us</h3>
-          <p>Hotline: 1234 56789</p>
-          <p>Email: hiidap@cvr.vn</p>
-          <p>Working hours: 8:00 - 22:00 (all days including Tet holiday)</p>
-          <div class="social-icons">
-            <img src="./Images/social1.png" alt="Social Icon" class="social-icon" />
-            <img src="./Images/social2.png" alt="Social Icon" class="social-icon" />
-            <img src="./Images/social3.png" alt="Social Icon" class="social-icon" />
-          </div>
+        <p class="footer-slogan">
+          Nơi trải nghiệm điện ảnh thăng hoa, dịch vụ vượt trội và công nghệ đỉnh cao.
+        </p>
+        <div class="footer-social">
+          <butoon class="social-link">ⓕ</butoon> <!-- Facebook -->
+          <butoon class="social-link"></butoon> <!-- Twitter -->
+          <butoon class="social-link"><img src="instagram (1).png"></butoon> <!-- Instagram -->
         </div>
       </div>
+      <!-- Footer Column 2: Quick Links -->
+      <div class="footer-column">
+        <h4 class="footer-heading">Liên Kết Nhanh</h4>
+        <ul class="footer-links">
+          <li><a href="#" class="footer-link">> Trang Chủ</a></li>
+          <li><a href="#now-showing" class="footer-link">> Phim Đang Chiếu</a></li>
+          <li><a href="#upcoming-movie" class="footer-link">> Phim Sắp Chiếu</a></li>
+
+        </ul>
+      </div>
+      <!-- Footer Column 3: Contact Information -->
+      <div class="footer-column">
+        <h4 class="footer-heading">Thông Tin Liên Hệ</h4>
+        <ul class="footer-contact">
+          <li>📍 624 ÂU CƠ, PHƯỜNG 10, QUẬN TÂN BÌNH TP.HCM</li>
+          <li>📞 +84 12345678</li>
+          <li>📧 support@cineverse.vn</li>
+          <li>📅 Mở cửa: 9:00 - 23:00 hàng ngày</li>
+        </ul>
+      </div>
+      <!-- Footer Column 4: Newsletter/CTA -->
+      <div class="footer-column">
+        <h4 class="footer-heading">Đăng Ký Nhận Tin</h4>
+        <p class="footer-description">
+          Nhận thông tin về phim mới, ưu đãi độc quyền trực tiếp vào email của bạn!
+        </p>
+        <form action="#" method="POST" class="footer-form">
+          <input type="email" placeholder="Email của bạn" class="footer-input" required>
+          <button type="submit" class="footer-button">Đăng Ký</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      <p>© 2025 CineVerse. Bảo lưu mọi quyền.</p>
     </div>
   </footer>
+
+
   <div class="popup-overlay" id="seat-selection-popup">
     <div class="popup-content">
       <button class="close-btn" id="close-popup-btn">×</button>
@@ -303,11 +321,6 @@
             <option value="23:00">23:00</option>
           </select>
         </div>
-      </div>
-      <div class="price-legend-container clearfix">
-        <div class="total-price-display">
-          Tổng Cộng: <span class="price-value" id="total-price">0 VND</span>
-        </div>
         <div class="legend-items">
           <span class="legend-item">
             <span class="legend-color legend-available"></span> Trống
@@ -320,11 +333,69 @@
           </span>
         </div>
       </div>
+
+
+      <div class="popcorn-selection-container clearfix">
+        <h3 class="popcorn-title">Chọn combo bắp nước</h3>
+        <div class="form-group">
+          <select id="popcorn-combo">
+            <option value="none" data-price="0">Không chọn</option>
+            <option value="combo1" data-price="50000">Combo 1 (Bắp nhỏ + Pepsi nhỏ) - 50,000 VND</option>
+            <option value="combo2" data-price="80000">Combo 2 (Bắp lớn + Pepsi lớn) - 80,000 VND</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="popcorn-quantity">Số lượng:</label>
+          <input type="number" id="popcorn-quantity" min="0" value="0">
+        </div>
+      </div>
+      <div class="price-legend-container clearfix">
+        <div class="total-price-display">
+          Tổng Cộng: <span class="price-value" id="total-price">0 VND</span>
+        </div>
+
+      </div>
       <div class="confirm-button-container">
         <button class="confirm-btn" id="confirm-booking-btn">Xác Nhận Đặt Vé</button>
       </div>
     </div>
   </div>
+
+  <!-- Popup Thanh Toán -->
+  <section id="payment-popup" class="popup-overlay">
+    <main class="payment-layout">
+      <div class="payment-columns">
+        <div class="payment-left">
+          <h2>Thanh Toán</h2>
+          <div class="payment-details">
+            <p><strong>Phim:</strong> <span id="popup-movie-name"></span></p>
+            <p><strong>Rạp:</strong> <span id="popup-cinema-name"></span></p>
+            <p><strong>Phòng:</strong> <span id="popup-hall-name"></span></p>
+            <p><strong>Ngày:</strong> <span id="popup-show-date"></span></p>
+            <p><strong>Giờ:</strong> <span id="popup-show-time"></span></p>
+            <p><strong>Ghế:</strong> <span id="popup-selected-seats"></span></p>
+            <p><strong>Combo:</strong> <span id="popup-combo-name"></span> (<span id="popup-combo-quantity"></span>)</p>
+            <p><strong>Tạm tính:</strong> <span id="popup-subtotal"></span>₫</p>
+          </div>
+          <div class="discount-section">
+            <label for="popup-discount-code">Mã giảm giá:</label>
+            <input type="text" id="popup-discount-code" placeholder="Nhập mã giảm giá">
+            <button id="popup-apply-discount-btn">Áp dụng</button>
+            <p><strong>Tổng cộng:</strong> <span id="popup-total-amount"></span>₫</p>
+          </div>
+        </div>
+        <div class="payment-right">
+          <img src="/Images/facebook__500x500.png" alt="QR Code" class="qr-code">
+        </div>
+      </div>
+      <div class="payment-footer">
+        <button id="popup-confirm-payment-btn">Thanh Toán</button>
+      </div>
+      <span id="close-payment-btn" class="close-btn">×</span> <!-- Nút đóng popup -->
+    </main>
+  </section>
+
+
   <script src="script.js"></script>
 </body>
 
