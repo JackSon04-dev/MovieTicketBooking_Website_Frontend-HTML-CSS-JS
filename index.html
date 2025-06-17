@@ -221,12 +221,11 @@
       <p>© 2025 CineVerse. Bảo lưu mọi quyền.</p>
     </div>
   </footer>
-
-
+  <!-- Popup chọn ghế -->
   <div class="popup-overlay" id="seat-selection-popup">
     <div class="popup-content">
       <button class="close-btn" id="close-popup-btn">×</button>
-      <h2 class="popup-movie-title" id="popup-movie-title">Chọn ghế cho phim: Unknown Movie</h2>
+      <h2 class="popup-movie-title" id="popup-movie-title-seat">Chọn ghế cho phim: Unknown Movie</h2>
       <p class="popup-description">
         Vui lòng chọn rạp, xuất chiếu và ghế. Ghế đã chọn:
         <span class="selected-count" id="selected-seats-count">0</span>
@@ -333,8 +332,6 @@
           </span>
         </div>
       </div>
-
-
       <div class="popcorn-selection-container clearfix">
         <h3 class="popcorn-title">Chọn combo bắp nước</h3>
         <div class="form-group">
@@ -368,20 +365,20 @@
         <div class="payment-left">
           <h2>Thanh Toán</h2>
           <div class="payment-details">
-            <p><strong>Phim:</strong> <span id="popup-movie-name"></span></p>
+            <p><strong>Phim:</strong> <span id="popup-movie-title-payment"></span></p>
             <p><strong>Rạp:</strong> <span id="popup-cinema-name"></span></p>
             <p><strong>Phòng:</strong> <span id="popup-hall-name"></span></p>
             <p><strong>Ngày:</strong> <span id="popup-show-date"></span></p>
             <p><strong>Giờ:</strong> <span id="popup-show-time"></span></p>
             <p><strong>Ghế:</strong> <span id="popup-selected-seats"></span></p>
             <p><strong>Combo:</strong> <span id="popup-combo-name"></span> (<span id="popup-combo-quantity"></span>)</p>
-            <p><strong>Tạm tính:</strong> <span id="popup-subtotal"></span>₫</p>
+            <p><strong>Tạm tính:</strong> <span id="popup-subtotal"></span></p>
           </div>
           <div class="discount-section">
             <label for="popup-discount-code">Mã giảm giá:</label>
             <input type="text" id="popup-discount-code" placeholder="Nhập mã giảm giá">
             <button id="popup-apply-discount-btn">Áp dụng</button>
-            <p><strong>Tổng cộng:</strong> <span id="popup-total-amount"></span>₫</p>
+            <p><strong>Tổng cộng:</strong> <span id="popup-total-amount"></span></p>
           </div>
         </div>
         <div class="payment-right">

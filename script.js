@@ -21,7 +21,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const menuItems = document.querySelector('.menu-items');
   const popcornCombo = document.getElementById('popcorn-combo');
   const popcornQuantity = document.getElementById('popcorn-quantity');
-  const popupMovieTitle = document.getElementById('popup-movie-title');
+  const popupMovieTitleSeat = document.getElementById('popup-movie-title-seat');
+  const popupMovieTitlePayment = document.getElementById('popup-movie-title-payment');
   const popupCinemaName = document.getElementById('popup-cinema-name');
   const popupHallName = document.getElementById('popup-hall-name');
   const popupShowDate = document.getElementById('popup-show-date');
@@ -81,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // Mở popup chọn ghế
   function openSeatPopup(movieTitle) {
     if (seatPopup) {
-      popupMovieTitle.textContent = `Chọn ghế cho phim: ${movieTitle || 'Unknown Movie'}`;
+      popupMovieTitleSeat.textContent = `Chọn ghế cho phim: ${movieTitle || 'Unknown Movie'}`;
       openPopup(seatPopup);
     } else {
       console.error('Error: seatPopup not found');
@@ -150,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
       comboName = popcornCombo.querySelector(`option[value="${combo}"]`)?.text || 'Không chọn';
     }
     bookingData = {
-      movie: popupMovieTitle.textContent.replace('Chọn ghế cho phim: ', ''),
+      movie: popupMovieTitleSeat.textContent.replace('Chọn ghế cho phim: ', ''),
       cinema: cinemaSelect?.options[cinemaSelect.selectedIndex]?.text || 'Unknown Cinema',
       showtime: showtimeSelect?.value || 'Unknown Time',
       seats: selectedSeats,
@@ -173,6 +174,8 @@ document.addEventListener('DOMContentLoaded', () => {
   // Cập nhật thông tin trong popup thanh toán
   function updatePaymentPopup() {
     const data = JSON.parse(localStorage.getItem('bookingData')) || {};
+    popupMovieTitlePayment.textContent = data.movie || 'Unknown Movie';
+
     popupCinemaName.textContent = data.cinema || 'Unknown Cinema';
     popupHallName.textContent = 'Cinema 3 - 2D'; // Giả định cố định
     popupShowDate.textContent = data.date || 'Unknown Date';
@@ -183,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const rawTotal = parseInt(data.totalPrice) || 0;
     popupSubtotal.textContent = formatCurrency(rawTotal);
     popupTotalAmount.textContent = formatCurrency(rawTotal);
-    popupMovieTitle.textContent = `Chọn ghế cho phim: ${data.movie || 'Unknown Movie'}`;
+
   }
 
   // Xử lý click ra ngoài để đóng popup thanh toán và quay lại popup chọn ghế

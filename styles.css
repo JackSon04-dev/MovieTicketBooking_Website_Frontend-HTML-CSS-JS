@@ -147,6 +147,10 @@ body {
   cursor: pointer;
 }
 
+.avatar:hover {
+  transform: scale(1.1);
+}
+
 .banner {
   position: relative;
   width: 100%;
@@ -205,7 +209,6 @@ body {
   /* Clearfix */
   display: flex;
   justify-content: center;
-
 }
 
 .movie-card {
@@ -217,7 +220,6 @@ body {
   float: left;
   margin-right: 2%;
   margin-bottom: 24px;
-
 }
 
 .movie-card:nth-child(4n) {
@@ -238,7 +240,6 @@ body {
 .movie-info {
   padding: 16px;
   background-color: #331336;
-
 }
 
 .tag {
@@ -301,7 +302,6 @@ body {
   border: 1px solid #f3ea28;
   color: #f3ea28;
   padding: 12px 16px;
-  /* Increased padding for vertical space */
   border-radius: 4px;
   font-family: "Anton", sans-serif;
   text-transform: uppercase;
@@ -311,10 +311,6 @@ body {
   clear: both;
   position: relative;
   text-align: center;
-}
-
-.avatar:hover {
-  transform: scale(1.1);
 }
 
 .btn-see-more:hover {
@@ -357,8 +353,6 @@ body {
 .btn-all-incentives:hover {
   background: #d4cb1f;
 }
-
-
 
 .social-icons {
   overflow: hidden;
@@ -512,117 +506,6 @@ body {
   border-top: 1px solid #4B5563;
 }
 
-
-
-/* Responsive Design */
-@media (max-width: 1024px) {
-  .search-input {
-    width: 150px;
-  }
-
-  .banner {
-    height: 400px;
-  }
-
-  .banner-content {
-    width: calc(100% - 30px);
-  }
-
-  .banner-buy-ticket {
-    padding: 6px 12px;
-    font-size: 14px;
-  }
-}
-
-@media (max-width: 768px) {
-  .header .container {
-    overflow: hidden;
-  }
-
-  .logo {
-    float: none;
-    margin-bottom: 16px;
-  }
-
-  .button-group {
-    float: none;
-    margin-left: 0;
-    width: 100%;
-  }
-
-  .btn-ticket,
-  .btn-popcorn {
-    width: 48%;
-    margin-right: 4%;
-    float: left;
-  }
-
-  .btn-popcorn {
-    margin-right: 0;
-  }
-
-  .user-section {
-    float: none;
-    width: 100%;
-    margin-top: 16px;
-  }
-
-  .search-input {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 16px;
-  }
-
-  .user-profile {
-    float: none;
-  }
-
-  .banner {
-    display: none;
-  }
-
-  .movie-card {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 24px;
-  }
-
-  .footer-container {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .footer-column {
-    margin-bottom: 24px;
-  }
-
-
-}
-
-@media (max-width: 480px) {
-  .banner {
-    height: 250px;
-  }
-
-  .banner-content {
-    width: calc(100% - 10px);
-  }
-
-  .banner-buy-ticket {
-    padding: 4px 8px;
-    font-size: 12px;
-    bottom: 5px;
-  }
-
-  .movie-img {
-    height: auto;
-  }
-
-  .container {
-    padding: 0 10px;
-  }
-}
-
 /* PopUp */
 .popup-overlay {
   position: fixed;
@@ -633,14 +516,10 @@ body {
   background-color: rgba(0, 0, 0, 0.7);
   display: none;
   z-index: 10000;
-
 }
 
 .popup-overlay.active {
-  display: flex !important;
-  /* Đảm bảo hiển thị */
   display: flex;
-  /* Căn giữa */
   justify-content: center;
   align-items: center;
 }
@@ -904,9 +783,7 @@ body {
 }
 
 .payment-details {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
+  display: inline-block;
 }
 
 .payment-info {
@@ -966,18 +843,6 @@ body {
   color: #000;
 }
 
-@media (max-width: 768px) {
-  .payment-details {
-    flex-direction: column;
-  }
-
-  .payment-info,
-  .qr-code-container {
-    width: 100%;
-    margin: 10px 0;
-  }
-}
-
 /* Responsive Design */
 @media (max-width: 1024px) {
   .search-input {
@@ -998,62 +863,33 @@ body {
   }
 }
 
-
-
 @media (max-width: 768px) {
-  .header .container {
-    overflow: hidden;
+  .payment-details {
+    flex-direction: column;
   }
 
-  .logo {
-    float: none;
-    margin-bottom: 16px;
-  }
-
-  .button-group {
-    float: none;
-    margin-left: 0;
+  .payment-info,
+  .qr-code-container,
+  .info-card {
     width: 100%;
+    margin: 10px 0;
   }
 
-  .btn-ticket,
-  .btn-popcorn {
-    width: 48%;
-    margin-right: 4%;
-    float: left;
-  }
-
-  .btn-popcorn {
-    margin-right: 0;
-  }
-
-  .user-section {
-    float: none;
-    width: 100%;
-    margin-top: 16px;
-  }
-
-  .search-input {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 16px;
-  }
-
-  .user-profile {
-    float: none;
-  }
-
-  .banner {
-    display: none;
+  .movie-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
   }
 
   .movie-card {
-    width: 100%;
-    margin-right: 0;
+    width: 48%;
     margin-bottom: 24px;
+    box-sizing: border-box;
   }
 
-
+  .movie-card:nth-child(2n) {
+    margin-right: 0;
+  }
 
   .popup-content {
     width: 95%;
@@ -1061,7 +897,6 @@ body {
 
   .seat-grid-container {
     width: 100%;
-    margin-right: 0;
     margin-bottom: 20px;
   }
 
@@ -1072,7 +907,8 @@ body {
     margin-bottom: 10px;
   }
 
-  .showtime-selection {
+  .showtime-selection,
+  .btn-popcorn {
     margin-right: 0;
   }
 
@@ -1080,21 +916,28 @@ body {
     overflow: hidden;
   }
 
-  .logo {
+  .logo,
+  .user-profile {
     float: none;
     margin-bottom: 16px;
   }
 
-  /* Chưa cần trên 768px */
-  .menu-items {
-    float: none;
-    width: 100%;
-  }
-
-  .button-group {
+  .button-group,
+  .menu-items,
+  .user-section {
     float: none;
     margin-left: 0;
     width: 100%;
+  }
+
+  .user-section {
+    margin-top: 16px;
+  }
+
+  .search-input {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 16px;
   }
 
   .btn-ticket,
@@ -1104,30 +947,17 @@ body {
     float: left;
   }
 
-  .btn-popcorn {
-    margin-right: 0;
+  .banner {
+    display: none;
   }
 
-  .info-card {
-    width: 100%;
-    margin-right: 0;
+  .footer-container {
+    flex-direction: column;
+    align-items: stretch;
   }
 
-  .user-section {
-    float: none;
-    width: 100%;
-    margin-top: 16px;
-    margin-left: 0;
-  }
-
-  .search-input {
-    width: 100%;
-    margin-right: 0;
-    margin-bottom: 16px;
-  }
-
-  .user-profile {
-    float: none;
+  .footer-column {
+    margin-bottom: 24px;
   }
 }
 
@@ -1221,10 +1051,14 @@ body {
     width: 100%;
     margin-right: 0;
   }
+
+  .movie-card {
+    width: 100%;
+    margin-right: 0;
+  }
 }
 
 /* POPUP Hoa don */
-
 .payment-layout {
   display: flex;
   flex-direction: column;
@@ -1251,7 +1085,6 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  /* nền tối nhẹ */
   padding: 20px;
 }
 
@@ -1268,7 +1101,8 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   margin-bottom: 20px;
-  text-align: center;
+  text-align: right;
+  margin-top: 5px;
 }
 
 .payment-details,
@@ -1279,7 +1113,7 @@ body {
 .payment-details p,
 .discount-section p {
   margin: 10px 0;
-  font-size: 1.1rem;
+  font-size: 1.3rem;
 }
 
 .payment-details strong,
@@ -1316,7 +1150,6 @@ body {
   justify-content: center;
   align-items: center;
   padding: 20px;
-
 }
 
 .qr-code {
@@ -1341,14 +1174,9 @@ body {
   border-radius: 6px;
   background: #f3ea28;
   color: #0f172a;
-  padding: 10px 20px;
-  border-radius: 4px;
-  font-family: "Anton", sans-serif;
-  text-transform: uppercase;
   border: none;
   cursor: pointer;
-  transition: background-color 0.3s;
-  transition: transform 0.2s ease, color 0.3s ease;
+  transition: background-color 0.3s, transform 0.2s ease, color 0.3s ease;
 }
 
 #popup-confirm-payment-btn:hover {
