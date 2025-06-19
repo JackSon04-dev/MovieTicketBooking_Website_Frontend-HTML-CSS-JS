@@ -78,7 +78,7 @@ body {
   border: none;
   cursor: pointer;
   float: left;
-  margin-right: 8px;
+  margin: 0 8px;
 }
 
 .btn-ticket:hover {
@@ -195,8 +195,7 @@ body {
   font-size: 40px;
   text-transform: uppercase;
   text-align: center;
-  margin-bottom: 32px;
-  clear: both;
+  margin-bottom: 10px 0;
 }
 
 .movies {
@@ -209,6 +208,7 @@ body {
   /* Clearfix */
   display: flex;
   justify-content: center;
+  padding-top: 2%;
 }
 
 .movie-card {
@@ -368,10 +368,10 @@ body {
 
 /* footer */
 .footer {
-  background-color: #0F172A;
+  background-color: #0f172a;
   color: white;
   padding: 32px 0;
-  border-top: 4px solid #F97316;
+  border-top: 4px solid #f97316;
 }
 
 .footer-container {
@@ -393,11 +393,11 @@ body {
 .footer-logo span {
   font-size: 24px;
   font-weight: bold;
-  color: #F97316;
+  color: #f97316;
 }
 
 .footer-slogan {
-  color: #D1D5DB;
+  color: #d1d5db;
   font-size: 14px;
   margin-bottom: 16px;
 }
@@ -408,13 +408,13 @@ body {
 }
 
 .social-link {
-  color: #D1D5DB;
+  color: #d1d5db;
   text-decoration: none;
   font-size: 18px;
 }
 
 .social-link:hover {
-  color: #F97316;
+  color: #f97316;
   transition: color 0.3s;
   cursor: pointer;
 }
@@ -432,7 +432,7 @@ body {
 }
 
 .footer-link {
-  color: #D1D5DB;
+  color: #d1d5db;
   text-decoration: none;
   font-size: 16px;
   display: block;
@@ -451,13 +451,13 @@ body {
 }
 
 .footer-contact li {
-  color: #D1D5DB;
+  color: #d1d5db;
   font-size: 16px;
   margin-bottom: 8px;
 }
 
 .footer-description {
-  color: #D1D5DB;
+  color: #d1d5db;
   font-size: 14px;
   margin-bottom: 16px;
 }
@@ -471,7 +471,7 @@ body {
 .footer-input {
   padding: 12px;
   border-radius: 8px;
-  border: 2px solid #F97316;
+  border: 2px solid #f97316;
   background-color: transparent;
   color: white;
   outline: none;
@@ -479,11 +479,11 @@ body {
 }
 
 .footer-input:focus {
-  border-color: #9333EA;
+  border-color: #9333ea;
 }
 
 .footer-button {
-  background-color: #3B82F6;
+  background-color: #3b82f6;
   color: white;
   padding: 12px;
   border-radius: 8px;
@@ -494,16 +494,16 @@ body {
 }
 
 .footer-button:hover {
-  background-color: #2563EB;
+  background-color: #2563eb;
   transition: background-color 0.3s;
 }
 
 .footer-copyright {
   text-align: center;
-  color: #D1D5DB;
+  color: #d1d5db;
   margin-top: 24px;
   padding-top: 16px;
-  border-top: 1px solid #4B5563;
+  border-top: 1px solid #4b5563;
 }
 
 /* PopUp */
@@ -531,7 +531,7 @@ body {
   padding: 20px;
   position: relative;
   border-radius: 1.5rem;
-  border: 2px solid #2563EB;
+  border: 2px solid #2563eb;
 }
 
 .close-btn {
@@ -1069,7 +1069,7 @@ body {
   border-radius: 10px;
   overflow: hidden;
   padding-bottom: 0;
-  border: 2px solid #2563EB;
+  border: 2px solid #2563eb;
 }
 
 .payment-columns {
@@ -1095,7 +1095,7 @@ body {
 }
 
 .payment-left h2 {
-  font-family: 'Anton', sans-serif;
+  font-family: "Anton", sans-serif;
   font-size: 3rem;
   background: linear-gradient(90deg, rgb(37 99 235), rgb(147 51 234));
   -webkit-background-clip: text;
@@ -1133,7 +1133,7 @@ body {
 
 .discount-section button {
   padding: 8px 16px;
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   border: none;
   border-radius: 4px;
@@ -1155,7 +1155,7 @@ body {
 .qr-code {
   max-width: 100%;
   height: auto;
-  border: 2px solid #2563EB;
+  border: 2px solid #2563eb;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: whitesmoke;
