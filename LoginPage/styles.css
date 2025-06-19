@@ -1,0 +1,93 @@
+/* Định dạng cho lớp background */
+.background {
+  /* Đặt chiều rộng và cao toàn màn hình */
+  width: 100%;
+  height: 100vh;
+  /* Đặt hình nền, không lặp, căn giữa, cố định */
+  background: url("./images/background_login.png") no-repeat center center fixed;
+  /* Phủ toàn bộ khu vực */
+  background-size: cover;
+  /* Sử dụng flex để căn giữa nội dung */
+  display: flex;
+  /* Căn giữa theo chiều ngang và dọc */
+  justify-content: center;
+  align-items: center;
+}
+
+/* Định dạng container chứa form đăng nhập */
+.login-container {
+  /* Đặt màu nền trắng với độ trong suốt */
+  background: rgba(255, 255, 255, 0.9);
+  /* Thêm đệm bên trong */
+  padding: 20px;
+  /* Bo tròn góc */
+  border-radius: 10px;
+  /* Căn giữa nội dung */
+  text-align: center;
+  /* Đặt chiều rộng cố định */
+  width: 300px;
+}
+
+/* Định dạng tiêu đề h2 */
+.login-container h2 {
+  /* Khoảng cách dưới tiêu đề */
+  margin-bottom: 20px;
+}
+
+/* Định dạng nút Google */
+.google-btn {
+  /* Màu nền đỏ nhạt */
+  background: #ec7171;
+  /* Viền xám nhạt */
+  border: 1px solid #ccc;
+  /* Đệm bên trong */
+  padding: 10px;
+  /* Chiều rộng toàn container */
+  width: 100%;
+  /* Bo tròn góc */
+  border-radius: 5px;
+  /* Con trỏ chuột thành bàn tay */
+  cursor: pointer;
+}
+
+/* Định dạng dòng chữ "or" */
+.or-divider {
+  /* Khoảng cách trên và dưới */
+  margin: 15px;
+  /* Màu chữ xám */
+  color: #666;
+}
+
+/* Định dạng ô nhập email */
+.email-input {
+  /* Chiều rộng toàn container */
+  width: 100%;
+  /* Đệm bên trong */
+  padding: 10px;
+  /* Khoảng cách dưới */
+  margin-bottom: 15px;
+  /* Viền xám nhạt */
+  border: 1px solid #ccc;
+  /* Bo tròn góc */
+  border-radius: 5px;
+  /* Bao gồm viền và đệm trong chiều rộng */
+  box-sizing: border-box;
+}
+
+/* Định dạng nút Continue */
+.continue-btn {
+  /* Màu nền đen */
+  background: #000;
+  /* Màu chữ trắng */
+  color: #fff;
+  /* Đệm bên trong */
+  padding: 10px;
+  /* Chiều rộng toàn container */
+  width: 100%;
+  /* Không viền */
+  border: none;
+  /* Bo tròn góc */
+  border-radius: 5px;
+  /* Con trỏ chuột thành bàn tay */
+  cursor: pointer;
+}
