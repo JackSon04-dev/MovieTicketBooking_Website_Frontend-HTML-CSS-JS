@@ -5,7 +5,7 @@ html {
 
 body {
   font-family: "Josefin Sans", sans-serif;
-  background-color: #1e293b;
+  background-color: #8aa08c;
   color: #f8fafc;
   margin: 0;
   padding: 0;
@@ -32,13 +32,12 @@ body {
 }
 
 .header .container {
-  overflow: hidden;
-  /* Clearfix */
+  max-width: 1200px;
 }
 
 .logo {
-  width: 98px;
-  height: 53px;
+  width: 115px;
+  height: 60px;
   border-radius: 8px;
   float: left;
   margin-left: -10px;
@@ -161,7 +160,7 @@ body {
 
 .banner .container {
   padding: 0 20px;
-  max-width: 1200px;
+  max-width: 1250px;
   width: 100%;
 }
 
@@ -205,10 +204,8 @@ body {
 
 .movie-grid {
   overflow: hidden;
-  /* Clearfix */
-  display: flex;
-  justify-content: center;
-  padding-top: 2%;
+  padding: 1.2%;
+  text-align: center;
 }
 
 .movie-card {
@@ -217,7 +214,7 @@ body {
   overflow: hidden;
   transition: transform 0.3s;
   width: 23%;
-  float: left;
+  display: inline-block;
   margin-right: 2%;
   margin-bottom: 24px;
 }
@@ -378,33 +375,38 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: flex-start;
+
+  text-align: justify;
+  font-size: 0; /* Xoá khoảng trắng thừa giữa các inline-block */
+}
+
+.footer-container::after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+  height: 0;
 }
 
 .footer-column {
-  margin-bottom: 24px;
-  flex: 1;
+  display: inline-block;
+  vertical-align: top;
+  width: 23%; /* hoặc 200px nếu bạn muốn cố định */
   min-width: 200px;
+  margin-bottom: 24px;
+  font-size: 16px; /* phục hồi cỡ chữ */
 }
 
-.footer-logo span {
+.footer-logo #logo-text {
   font-size: 24px;
   font-weight: bold;
   color: #f97316;
+  margin: 8% 0 0 0;
 }
 
 .footer-slogan {
   color: #d1d5db;
   font-size: 14px;
   margin-bottom: 16px;
-}
-
-.footer-social {
-  display: flex;
-  gap: 16px;
 }
 
 .social-link {
@@ -462,12 +464,14 @@ body {
   margin-bottom: 16px;
 }
 
-.footer-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.footer-form > * {
+  display: block;
+  margin-bottom: 16px;
 }
-
+.footer-form > *:last-child {
+  margin-bottom: 0;
+  width: 73%;
+}
 .footer-input {
   padding: 12px;
   border-radius: 8px;
@@ -519,11 +523,9 @@ body {
 }
 
 .popup-overlay.active {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  display: inline-block;
+  padding: 5% 2% 5% 20%;
 }
-
 .popup-content {
   background-color: #1e293b;
   width: 80%;
@@ -786,23 +788,7 @@ body {
   display: inline-block;
 }
 
-.payment-info {
-  flex: 1;
-  text-align: left;
-  margin-right: 20px;
-}
-
-.payment-info p {
-  margin: 5px 0;
-  font-size: 14px;
-}
-
-.payment-info p strong {
-  color: #800080;
-}
-
 .qr-code-container {
-  flex: 1;
   text-align: center;
 }
 
@@ -865,7 +851,6 @@ body {
 
 @media (max-width: 768px) {
   .payment-details {
-    flex-direction: column;
   }
 
   .payment-info,
