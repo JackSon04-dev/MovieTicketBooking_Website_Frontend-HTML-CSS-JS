@@ -1,4 +1,4 @@
-// ==================== GLOBAL VARIABLES ====================
+// ==================== BIẾN TOÀN CỤC ====================
 const moviesList = [
   "Quỷ Nhập Tràng", "Red Man", "Mickey 17", "THE MONKEY",
   "Nghề Siêu Khó", "Điều Ước Cuối Cùng", "Nghi Lễ Trục Quỷ", "Trừ Tà Ký"
@@ -9,7 +9,7 @@ let selectedSeats = []
 let bookingData = {}
 const ticketPrice = 75000
 
-// ==================== UTILITY FUNCTIONS ====================
+// ==================== HÀM TIỆN ÍCH ====================
 function formatCurrency(amount) {
   return parseInt(amount || 0).toLocaleString("vi-VN") + "₫"
 }
@@ -26,7 +26,7 @@ function showAlert(message, type = "info") {
   }, 3000)
 }
 
-// ==================== THEME TOGGLE ====================
+// ==================== CHUYỂN ĐỔI THEME ====================
 function initTheme() {
   const toggle = document.getElementById("theme-toggle")
   const body = document.body
@@ -44,7 +44,7 @@ function initTheme() {
   })
 }
 
-// ==================== SEARCH FUNCTION ====================
+// ==================== CHỨC NĂNG TÌM KIẾM ====================
 function initSearch() {
   const input = document.getElementById("search-input")
   const suggestions = document.getElementById("search-suggestions")
@@ -57,6 +57,7 @@ function initSearch() {
       return
     }
 
+    // Lọc phim theo từ khóa tìm kiếm
     const filtered = moviesList.filter(movie => 
       movie.toLowerCase().includes(query)
     ).sort((a, b) => {
@@ -65,6 +66,7 @@ function initSearch() {
       return aStarts && !bStarts ? -1 : !aStarts && bStarts ? 1 : 0
     })
 
+    // Hiển thị kết quả tìm kiếm
     suggestions.innerHTML = filtered.length ? 
       filtered.map(movie => 
         `<div class="suggestion-item" onclick="selectMovie('${movie}')">
@@ -76,6 +78,7 @@ function initSearch() {
     suggestions.style.display = "block"
   })
 
+  // Ẩn gợi ý khi click ra ngoài
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".search-container")) {
       suggestions.style.display = "none"
@@ -87,6 +90,7 @@ function selectMovie(movieName) {
   document.getElementById("search-input").value = movieName
   document.getElementById("search-suggestions").style.display = "none"
   
+  // Cuộn đến phim được chọn và làm nổi bật
   const card = document.querySelector(`[data-movie="${movieName}"]`)
   if (card) {
     card.scrollIntoView({ behavior: "smooth", block: "center" })
@@ -95,7 +99,7 @@ function selectMovie(movieName) {
   }
 }
 
-// ==================== SLIDER FUNCTIONS ====================
+// ==================== CHỨC NĂNG SLIDER ====================
 let currentSlide = 0
 let comingSoonSlide = 0
 
@@ -103,9 +107,11 @@ function initSliders() {
   const nowShowing = document.getElementById("movieSlider")
   const comingSoon = document.getElementById("comingSoonSlider")
   
+  // Tạo dots cho slider
   createDots("slider-dots", nowShowing.children.length)
   createDots("coming-soon-dots", comingSoon.children.length)
   
+  // Gắn sự kiện cho các nút điều hướng
   document.getElementById("now-showing-prev").onclick = () => 
     navigate("movieSlider", "slider-dots", -1, nowShowing.children.length)
   document.getElementById("now-showing-next").onclick = () => 
@@ -120,6 +126,7 @@ function createDots(containerId, count) {
   const container = document.getElementById(containerId)
   container.innerHTML = ""
   
+  // Tạo dots cho từng slide
   for (let i = 0; i < count; i++) {
     const dot = document.createElement("span")
     dot.className = "dot"
@@ -135,6 +142,7 @@ function navigate(sliderId, dotsId, direction, total) {
   const current = sliderId === "movieSlider" ? currentSlide : comingSoonSlide
   let newIndex = current + direction
   
+  // Xử lý vòng lặp slider
   if (newIndex < 0) newIndex = total - 1
   if (newIndex >= total) newIndex = 0
   
@@ -146,26 +154,30 @@ function goToSlide(sliderId, dotsId, index) {
   const cardWidth = slider.querySelector(".movie-card").offsetWidth
   const margin = parseInt(getComputedStyle(slider.querySelector(".movie-card")).marginRight)
   
+  // Cuộn đến vị trí slide mới
   slider.scrollTo({
     left: index * (cardWidth + margin),
     behavior: "smooth"
   })
   
+  // Cập nhật trạng thái dots
   document.querySelectorAll(`#${dotsId} .dot`).forEach((dot, i) => {
     dot.classList.toggle("active", i === index)
   })
   
+  // Cập nhật chỉ số slide hiện tại
   if (sliderId === "movieSlider") currentSlide = index
   else comingSoonSlide = index
 }
 
-// ==================== DATE SELECTION ====================
+// ==================== CHỌN NGÀY CHIẾU ====================
 function initDates() {
   const grid = document.getElementById("date-grid")
   const text = document.getElementById("selected-date-text")
   
   grid.innerHTML = ""
   
+  // Tạo 7 ngày tiếp theo
   for (let i = 0; i < 7; i++) {
     const date = new Date()
     date.setDate(date.getDate() + i)
@@ -179,6 +191,7 @@ function initDates() {
       <div class="month-name">${date.toLocaleDateString("vi-VN", { month: "short" })}</div>
     `
     
+    // Xử lý sự kiện chọn ngày
     item.onclick = () => {
       document.querySelectorAll(".date-item").forEach(d => d.classList.remove("selected"))
       item.classList.add("selected")
@@ -190,11 +203,12 @@ function initDates() {
   }
 }
 
-// ==================== BOOKING FUNCTIONS ====================
+// ==================== CHỨC NĂNG ĐẶT VÉ ====================
 function updatePrice() {
   const count = selectedSeats.length
   document.getElementById("selected-seats-count").textContent = count
   
+  // Tính giá combo bắp nước
   const combo = document.getElementById("popcorn-combo")?.value || "none"
   const quantity = parseInt(document.getElementById("popcorn-quantity")?.value) || 0
   let popcornPrice = 0
@@ -204,6 +218,7 @@ function updatePrice() {
     popcornPrice = parseInt(option?.dataset.price || 0) * quantity
   }
   
+  // Cập nhật tổng giá
   const total = count * ticketPrice + popcornPrice
   document.getElementById("total-price").textContent = formatCurrency(total)
 }
@@ -221,20 +236,22 @@ function closeAllPopups() {
   closePopup(document.getElementById("payment-popup"))
   selectedSeats = []
   selectedDate = null
+  // Reset trạng thái ghế và ngày
   document.querySelectorAll(".seat").forEach(seat => seat.classList.remove("selected"))
   document.querySelectorAll(".date-item").forEach(item => item.classList.remove("selected"))
   document.getElementById("selected-date-text").textContent = "Chưa chọn"
   updatePrice()
 }
 
-// ==================== MAIN INITIALIZATION ====================
+// ==================== KHỞI TẠO CHÍNH ====================
 document.addEventListener("DOMContentLoaded", () => {
+  // Khởi tạo các chức năng
   initTheme()
   initSearch()
   initSliders()
   initDates()
 
-  // Ticket buttons
+  // Xử lý nút mua vé
   document.querySelectorAll(".btn-ticket").forEach(btn => {
     btn.addEventListener("click", (e) => {
       if (btn.closest(".coming-soon")) {
@@ -247,18 +264,20 @@ document.addEventListener("DOMContentLoaded", () => {
         return
       }
       
+      // Mở popup chọn ghế
       document.getElementById("popup-movie-title-seat").textContent = 
         `Chọn ghế cho phim: ${btn.dataset.movie || "Unknown Movie"}`
       openPopup(document.getElementById("seat-selection-popup"))
     })
   })
 
-  // Seat selection
+  // Xử lý chọn ghế
   document.querySelectorAll(".seat:not(.occupied)").forEach(seat => {
     seat.addEventListener("click", () => {
       seat.classList.toggle("selected")
       const seatId = seat.dataset.seat
       
+      // Cập nhật danh sách ghế đã chọn
       if (selectedSeats.includes(seatId)) {
         selectedSeats = selectedSeats.filter(id => id !== seatId)
       } else {
@@ -268,15 +287,16 @@ document.addEventListener("DOMContentLoaded", () => {
     })
   })
 
-  // Close buttons
+  // Xử lý nút đóng popup
   document.getElementById("close-popup-btn").onclick = closeAllPopups
   document.getElementById("close-payment-btn").onclick = () => {
     closePopup(document.getElementById("payment-popup"))
     openPopup(document.getElementById("seat-selection-popup"))
   }
 
-  // Confirm booking
+  // Xác nhận đặt vé
   document.getElementById("confirm-booking-btn").onclick = () => {
+    // Kiểm tra điều kiện đặt vé
     if (!selectedDate) {
       showAlert("Vui lòng chọn ngày chiếu!", "error")
       return
@@ -286,6 +306,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return
     }
 
+    // Tính toán thông tin combo
     const combo = document.getElementById("popcorn-combo")?.value || "none"
     const quantity = parseInt(document.getElementById("popcorn-quantity")?.value) || 0
     let popcornPrice = 0
@@ -297,6 +318,7 @@ document.addEventListener("DOMContentLoaded", () => {
       comboName = option?.text || "Không chọn"
     }
 
+    // Lưu thông tin đặt vé
     bookingData = {
       movie: document.getElementById("popup-movie-title-seat").textContent.replace("Chọn ghế cho phim: ", ""),
       cinema: document.getElementById("cinema-select")?.options[document.getElementById("cinema-select").selectedIndex]?.text || "Unknown Cinema",
@@ -308,7 +330,7 @@ document.addEventListener("DOMContentLoaded", () => {
       totalPrice: selectedSeats.length * ticketPrice + popcornPrice
     }
 
-    // Update payment popup
+    // Cập nhật thông tin popup thanh toán
     document.getElementById("popup-movie-title-payment").textContent = bookingData.movie
     document.getElementById("popup-cinema-name").textContent = bookingData.cinema
     document.getElementById("popup-hall-name").textContent = "Cinema 3 - 2D"
@@ -320,15 +342,17 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("popup-subtotal").textContent = formatCurrency(bookingData.totalPrice)
     document.getElementById("popup-total-amount").textContent = formatCurrency(bookingData.totalPrice)
 
+    // Chuyển sang popup thanh toán
     closePopup(document.getElementById("seat-selection-popup"))
     openPopup(document.getElementById("payment-popup"))
   }
 
-  // Discount code
+  // Xử lý mã giảm giá
   document.getElementById("popup-apply-discount-btn").onclick = () => {
     const code = document.getElementById("popup-discount-code").value.trim().toUpperCase()
     let total = bookingData.totalPrice
 
+    // Kiểm tra mã giảm giá
     if (code === "DISCOUNT10") {
       total = Math.round(total * 0.9)
       showAlert("Áp dụng mã giảm giá 10% thành công!", "success")
@@ -342,14 +366,14 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("popup-total-amount").textContent = formatCurrency(total)
   }
 
-  // Payment confirmation
+  // Xác nhận thanh toán
   document.getElementById("popup-confirm-payment-btn").onclick = () => {
     const total = document.getElementById("popup-total-amount").textContent
     showAlert(`Thanh toán thành công với tổng: ${total}!`, "success")
     closeAllPopups()
   }
 
-  // Hamburger menu
+  // Menu hamburger
   document.querySelector(".hamburger")?.addEventListener("click", () => {
     const menu = document.querySelector(".menu-items")
     const hamburger = document.querySelector(".hamburger")
@@ -357,11 +381,11 @@ document.addEventListener("DOMContentLoaded", () => {
     hamburger.textContent = menu.classList.contains("active") ? "✕" : "☰"
   })
 
-  // Update price on combo/quantity change
+  // Cập nhật giá khi thay đổi combo/số lượng
   document.getElementById("popcorn-combo")?.addEventListener("change", updatePrice)
   document.getElementById("popcorn-quantity")?.addEventListener("change", updatePrice)
 
-  // Close payment popup when clicking outside
+  // Đóng popup thanh toán khi click bên ngoài
   document.getElementById("payment-popup")?.addEventListener("click", (e) => {
     if (e.target.id === "payment-popup") {
       closePopup(document.getElementById("payment-popup"))
