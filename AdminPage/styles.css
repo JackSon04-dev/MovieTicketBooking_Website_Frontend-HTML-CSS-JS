@@ -466,8 +466,8 @@ body {
   padding: 12px;
   border: 2px solid rgba(255, 255, 255, 0.2);
   border-radius: 8px;
-  background: rgba(255, 255, 255, 0.9);
-  color: #1f2937;
+  background: rgba(255, 255, 255, 0.1);
+  color: #f8fafc;
   font-size: 14px;
   transition: all 0.3s ease;
 }
@@ -477,12 +477,7 @@ body {
 .form-group textarea:focus {
   outline: none;
   border-color: #3b82f6;
-  background: rgba(255, 255, 255, 0.95);
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-  color: #6b7280;
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .form-group textarea {
@@ -511,6 +506,26 @@ body {
 .btn-secondary:hover {
   background: rgba(75, 85, 99, 0.9);
   transform: translateY(-2px);
+}
+
+.discount-section input {
+  padding: 8px;
+  width: 60%;
+  margin-right: 8px;
+  border: 2px solid #4b5563;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #1f2937;
+  transition: border-color 0.2s ease;
+}
+
+.discount-section input:focus {
+  outline: none;
+  border-color: #3b82f6;
+}
+
+.discount-section input::placeholder {
+  color: #6b7280;
 }
 
 /* ==================== RESPONSIVE ==================== */
