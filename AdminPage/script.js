@@ -1,19 +1,11 @@
 // ==================== BIẾN TOÀN CỤC ====================
-let currentEditingMovieId = null;
-let currentEditingUserId = null;
+let movieIdCounter = 5; // Bắt đầu từ 5 vì đã có 4 phim
+let userIdCounter = 4;  // Bắt đầu từ 4 vì đã có 3 user
 
 // ==================== KHỞI TẠO ==================== 
 document.addEventListener("DOMContentLoaded", () => {
-  // Kiểm tra quyền admin
   checkAdminAccess();
-  
-  // Hiển thị email admin
-  const adminEmail = localStorage.getItem("userEmail");
-  if (adminEmail) {
-    document.getElementById("admin-email").textContent = adminEmail;
-  }
-  
-  // Khởi tạo các sự kiện
+  displayAdminEmail();
   initEventListeners();
 });
 
@@ -25,21 +17,32 @@ function checkAdminAccess() {
   if (!isAdmin || !isLoggedIn) {
     alert("Bạn không có quyền truy cập trang này!");
     window.location.href = "../LoginPage/index.html";
-    return;
+  }
+}
+
+function displayAdminEmail() {
+  const adminEmail = localStorage.getItem("userEmail");
+  if (adminEmail) {
+    document.getElementById("admin-email").textContent = adminEmail;
   }
 }
 
 // ==================== KHỞI TẠO SỰ KIỆN ====================
 function initEventListeners() {
-  // Xử lý form thêm/sửa phim
-  document.getElementById("movie-form").addEventListener("submit", handleMovieSubmit);
+  // Form submissions
+  document.getElementById("movie-form").addEventListener("submit", handleAddMovie);
+  document.getElementById("user-form").addEventListener("submit", handleAddUser);
   
-  // Xử lý form thêm/sửa người dùng
-  document.getElementById("user-form").addEventListener("submit", handleUserSubmit);
-  
-  // Xử lý tìm kiếm
+  // Search functionality
   document.getElementById("movie-search").addEventListener("input", searchMovies);
   document.getElementById("user-search").addEventListener("input", searchUsers);
+  
+  // Close modals when clicking outside
+  document.addEventListener("click", (e) => {
+    if (e.target.classList.contains("modal")) {
+      closeModal(e.target.id);
+    }
+  });
 }
 
 // ==================== ĐIỀU HƯỚNG ====================
@@ -60,10 +63,11 @@ function showSection(sectionId) {
 }
 
 function logout() {
-  localStorage.removeItem("userEmail");
-  localStorage.removeItem("isLoggedIn");
-  localStorage.removeItem("isAdmin");
-  window.location.href = "../LoginPage/index.html";
+  localStorage.clear();
+  showAlert("Đăng xuất thành công!", "success");
+  setTimeout(() => {
+    window.location.href = "../LoginPage/index.html";
+  }, 1000);
 }
 
 function goBack() {
@@ -72,15 +76,11 @@ function goBack() {
 
 // ==================== QUẢN LÝ MODAL ====================
 function showAddMovieModal() {
-  currentEditingMovieId = null;
-  document.getElementById("movie-modal-title").textContent = "Thêm phim mới";
   document.getElementById("movie-form").reset();
   document.getElementById("movie-modal").classList.add("active");
 }
 
 function showAddUserModal() {
-  currentEditingUserId = null;
-  document.getElementById("user-modal-title").textContent = "Thêm người dùng";
   document.getElementById("user-form").reset();
   document.getElementById("user-modal").classList.add("active");
 }
@@ -89,236 +89,100 @@ function closeModal(modalId) {
   document.getElementById(modalId).classList.remove("active");
 }
 
-// Đóng modal khi click bên ngoài
-document.addEventListener("click", (e) => {
-  if (e.target.classList.contains("modal")) {
-    e.target.classList.remove("active");
-  }
-});
-
-// ==================== QUẢN LÝ PHIM ====================
-function handleMovieSubmit(e) {
+// ==================== THÊM PHIM ====================
+function handleAddMovie(e) {
   e.preventDefault();
   
-  const formData = {
+  const movieData = {
+    id: movieIdCounter++,
     title: document.getElementById("movie-title").value,
     genre: document.getElementById("movie-genre").value,
     duration: document.getElementById("movie-duration").value,
     rating: document.getElementById("movie-rating").value,
     status: document.getElementById("movie-status").value,
-    image: document.getElementById("movie-image").value,
-    description: document.getElementById("movie-description").value
+    image: document.getElementById("movie-image").value || "../HomePage/Images/movie1.png"
   };
   
-  if (currentEditingMovieId) {
-    // Cập nhật phim
-    updateMovie(currentEditingMovieId, formData);
-    showAlert("Cập nhật phim thành công!", "success");
-  } else {
-    // Thêm phim mới
-    addMovie(formData);
-    showAlert("Thêm phim mới thành công!", "success");
-  }
-  
+  addMovieToGrid(movieData);
   closeModal("movie-modal");
-  refreshMoviesGrid();
+  showAlert("Thêm phim mới thành công!", "success");
 }
 
-function addMovie(movieData) {
-  // Tạo thẻ phim mới
+function addMovieToGrid(movieData) {
   const moviesGrid = document.getElementById("movies-grid");
-  const movieCard = createMovieCard(movieData, Date.now());
-  moviesGrid.appendChild(movieCard);
-  
-  // Cập nhật số liệu dashboard
-  updateMovieStats();
-}
-
-function createMovieCard(movieData, id) {
-  const card = document.createElement("div");
-  card.className = "movie-admin-card";
-  card.innerHTML = `
-    <img src="${movieData.image || '../HomePage/Images/movie1.png'}" alt="Movie" class="movie-admin-img">
+  const movieCard = document.createElement("div");
+  movieCard.className = "movie-admin-card";
+  movieCard.innerHTML = `
+    <img src="${movieData.image}" alt="Movie" class="movie-admin-img">
     <div class="movie-admin-info">
       <h4>${movieData.title}</h4>
       <p>Thể loại: ${getGenreText(movieData.genre)}</p>
       <p>Thời lượng: ${movieData.duration} phút</p>
       <p>Trạng thái: <span class="status ${movieData.status === 'showing' ? 'active' : 'inactive'}">${getStatusText(movieData.status)}</span></p>
       <div class="movie-actions">
-        <button class="btn-edit" onclick="editMovie(${id})">Sửa</button>
-        <button class="btn-delete" onclick="deleteMovie(${id})">Xóa</button>
+        <button class="btn-delete" onclick="deleteMovie(this)">Xóa</button>
       </div>
     </div>
   `;
-  return card;
+  moviesGrid.appendChild(movieCard);
 }
 
-function editMovie(id) {
-  currentEditingMovieId = id;
-  document.getElementById("movie-modal-title").textContent = "Sửa thông tin phim";
-  
-  // Giả lập dữ liệu phim (trong thực tế sẽ lấy từ database)
-  const movieData = {
-    title: "Phim mẫu",
-    genre: "action",
-    duration: "120",
-    rating: "T18",
-    status: "showing",
-    image: "",
-    description: "Mô tả phim mẫu"
-  };
-  
-  // Điền dữ liệu vào form
-  document.getElementById("movie-title").value = movieData.title;
-  document.getElementById("movie-genre").value = movieData.genre;
-  document.getElementById("movie-duration").value = movieData.duration;
-  document.getElementById("movie-rating").value = movieData.rating;
-  document.getElementById("movie-status").value = movieData.status;
-  document.getElementById("movie-image").value = movieData.image;
-  document.getElementById("movie-description").value = movieData.description;
-  
-  document.getElementById("movie-modal").classList.add("active");
-}
-
-function deleteMovie(id) {
+function deleteMovie(button) {
   if (confirm("Bạn có chắc chắn muốn xóa phim này?")) {
-    // Xóa phim (trong thực tế sẽ gọi API)
+    button.closest(".movie-admin-card").remove();
     showAlert("Xóa phim thành công!", "success");
-    refreshMoviesGrid();
-    updateMovieStats();
   }
 }
 
-function updateMovie(id, movieData) {
-  // Cập nhật phim (trong thực tế sẽ gọi API)
-  console.log("Updating movie:", id, movieData);
+// ==================== THÊM NGƯỜI DÙNG ====================
+function handleAddUser(e) {
+  e.preventDefault();
+  
+  const userData = {
+    id: userIdCounter++,
+    email: document.getElementById("user-email").value,
+    name: document.getElementById("user-name").value,
+    status: document.getElementById("user-status").value,
+    date: new Date().toLocaleDateString("vi-VN")
+  };
+  
+  addUserToTable(userData);
+  closeModal("user-modal");
+  showAlert("Thêm người dùng mới thành công!", "success");
 }
 
-function refreshMoviesGrid() {
-  // Làm mới danh sách phim (trong thực tế sẽ gọi API để lấy dữ liệu mới)
-  console.log("Refreshing movies grid");
+function addUserToTable(userData) {
+  const tableBody = document.getElementById("users-table-body");
+  const newRow = document.createElement("tr");
+  newRow.innerHTML = `
+    <td>${userData.id}</td>
+    <td>${userData.email}</td>
+    <td>${userData.name}</td>
+    <td>${userData.date}</td>
+    <td><span class="status ${userData.status}">${userData.status === 'active' ? 'Hoạt động' : 'Tạm khóa'}</span></td>
+    <td>
+      <button class="btn-delete" onclick="deleteUser(this)">Xóa</button>
+    </td>
+  `;
+  tableBody.appendChild(newRow);
 }
 
-function updateMovieStats() {
-  // Cập nhật số liệu thống kê phim
-  const totalMovies = document.querySelectorAll(".movie-admin-card").length;
-  document.getElementById("total-movies").textContent = totalMovies;
+function deleteUser(button) {
+  if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
+    button.closest("tr").remove();
+    showAlert("Xóa người dùng thành công!", "success");
+  }
 }
 
+// ==================== TÌM KIẾM ====================
 function searchMovies(e) {
   const searchTerm = e.target.value.toLowerCase();
   const movieCards = document.querySelectorAll(".movie-admin-card");
   
   movieCards.forEach(card => {
     const title = card.querySelector("h4").textContent.toLowerCase();
-    if (title.includes(searchTerm)) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
+    card.style.display = title.includes(searchTerm) ? "block" : "none";
   });
-}
-
-// ==================== QUẢN LÝ NGƯỜI DÙNG ====================
-function handleUserSubmit(e) {
-  e.preventDefault();
-  
-  const formData = {
-    email: document.getElementById("user-email").value,
-    name: document.getElementById("user-name").value,
-    status: document.getElementById("user-status").value
-  };
-  
-  if (currentEditingUserId) {
-    // Cập nhật người dùng
-    updateUser(currentEditingUserId, formData);
-    showAlert("Cập nhật người dùng thành công!", "success");
-  } else {
-    // Thêm người dùng mới
-    addUser(formData);
-    showAlert("Thêm người dùng mới thành công!", "success");
-  }
-  
-  closeModal("user-modal");
-  refreshUsersTable();
-}
-
-function addUser(userData) {
-  // Tính ID mới dựa trên ID cao nhất hiện tại
-  const existingRows = document.querySelectorAll("#users-table-body tr");
-  let maxId = 0;
-  existingRows.forEach(row => {
-    const id = parseInt(row.cells[0].textContent);
-    if (id > maxId) maxId = id;
-  });
-  const newId = maxId + 1;
-  
-  const tableBody = document.getElementById("users-table-body");
-  const newRow = createUserRow(userData, newId);
-  tableBody.appendChild(newRow);
-  
-  // Cập nhật số liệu dashboard
-  updateUserStats();
-}
-
-function createUserRow(userData, id) {
-  const row = document.createElement("tr");
-  row.innerHTML = `
-    <td>${id}</td>
-    <td>${userData.email}</td>
-    <td>${userData.name}</td>
-    <td>${new Date().toLocaleDateString("vi-VN")}</td>
-    <td><span class="status ${userData.status}">${userData.status === 'active' ? 'Hoạt động' : 'Tạm khóa'}</span></td>
-    <td>
-      <button class="btn-edit" onclick="editUser(${id})">Sửa</button>
-      <button class="btn-delete" onclick="deleteUser(${id})">Xóa</button>
-    </td>
-  `;
-  return row;
-}
-
-function editUser(id) {
-  currentEditingUserId = id;
-  document.getElementById("user-modal-title").textContent = "Sửa thông tin người dùng";
-  
-  // Giả lập dữ liệu người dùng (trong thực tế sẽ lấy từ database)
-  const userData = {
-    email: "user@gmail.com",
-    name: "Người dùng mẫu",
-    status: "active"
-  };
-  
-  // Điền dữ liệu vào form
-  document.getElementById("user-email").value = userData.email;
-  document.getElementById("user-name").value = userData.name;
-  document.getElementById("user-status").value = userData.status;
-  
-  document.getElementById("user-modal").classList.add("active");
-}
-
-function deleteUser(id) {
-  if (confirm("Bạn có chắc chắn muốn xóa người dùng này?")) {
-    // Xóa người dùng (trong thực tế sẽ gọi API)
-    showAlert("Xóa người dùng thành công!", "success");
-    refreshUsersTable();
-    updateUserStats();
-  }
-}
-
-function updateUser(id, userData) {
-  // Cập nhật người dùng (trong thực tế sẽ gọi API)
-  console.log("Updating user:", id, userData);
-}
-
-function refreshUsersTable() {
-  // Làm mới bảng người dùng (trong thực tế sẽ gọi API để lấy dữ liệu mới)
-  console.log("Refreshing users table");
-}
-
-function updateUserStats() {
-  // Cập nhật số liệu thống kê người dùng
-  const totalUsers = document.querySelectorAll("#users-table-body tr").length;
-  document.getElementById("total-users").textContent = totalUsers;
 }
 
 function searchUsers(e) {
@@ -328,12 +192,7 @@ function searchUsers(e) {
   userRows.forEach(row => {
     const email = row.cells[1].textContent.toLowerCase();
     const name = row.cells[2].textContent.toLowerCase();
-    
-    if (email.includes(searchTerm) || name.includes(searchTerm)) {
-      row.style.display = "";
-    } else {
-      row.style.display = "none";
-    }
+    row.style.display = (email.includes(searchTerm) || name.includes(searchTerm)) ? "" : "none";
   });
 }
 
@@ -341,7 +200,7 @@ function searchUsers(e) {
 function getGenreText(genre) {
   const genres = {
     'action': 'Hành động',
-    'horror': 'Kinh dị',
+    'horror': 'Kinh dị', 
     'comedy': 'Hài',
     'drama': 'Chính kịch',
     'sci-fi': 'Khoa học viễn tưởng'
@@ -352,7 +211,7 @@ function getGenreText(genre) {
 function getStatusText(status) {
   const statuses = {
     'showing': 'Đang chiếu',
-    'coming': 'Sắp chiếu',
+    'coming': 'Sắp chiếu', 
     'ended': 'Đã kết thúc'
   };
   return statuses[status] || status;
@@ -360,7 +219,7 @@ function getStatusText(status) {
 
 function showAlert(message, type = "info") {
   const alert = document.createElement("div");
-  alert.className = `custom-alert ${type} show`;
+  alert.className = `custom-alert ${type}`;
   alert.textContent = message;
   alert.style.cssText = `
     position: fixed;
@@ -377,31 +236,21 @@ function showAlert(message, type = "info") {
     font-size: 14px;
   `;
   
-  // Màu sắc theo loại thông báo
-  if (type === "success") {
-    alert.style.background = "linear-gradient(45deg, #22c55e, #16a34a)";
-  } else if (type === "error") {
-    alert.style.background = "linear-gradient(45deg, #ef4444, #dc2626)";
-  } else if (type === "warning") {
-    alert.style.background = "linear-gradient(45deg, #f59e0b, #f97316)";
-  } else {
-    alert.style.background = "linear-gradient(45deg, #3b82f6, #2563eb)";
-  }
+  // Màu sắc theo loại
+  const colors = {
+    success: "linear-gradient(45deg, #22c55e, #16a34a)",
+    error: "linear-gradient(45deg, #ef4444, #dc2626)", 
+    warning: "linear-gradient(45deg, #f59e0b, #f97316)",
+    info: "linear-gradient(45deg, #3b82f6, #2563eb)"
+  };
+  alert.style.background = colors[type] || colors.info;
   
   document.body.appendChild(alert);
   
-  // Hiển thị thông báo
-  setTimeout(() => {
-    alert.style.transform = "translateX(0)";
-  }, 100);
-  
-  // Ẩn thông báo sau 3 giây
+  // Hiển thị và ẩn thông báo
+  setTimeout(() => alert.style.transform = "translateX(0)", 100);
   setTimeout(() => {
     alert.style.transform = "translateX(400px)";
-    setTimeout(() => {
-      if (document.body.contains(alert)) {
-        document.body.removeChild(alert);
-      }
-    }, 300);
+    setTimeout(() => document.body.removeChild(alert), 300);
   }, 3000);
 }
