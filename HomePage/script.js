@@ -243,6 +243,24 @@ function closeAllPopups() {
   updatePrice()
 }
 
+// ==================== CHỨC NĂNG ADMIN ====================
+function initAdmin() {
+  const isAdmin = localStorage.getItem("isAdmin") === "true"
+  const isLoggedIn = localStorage.getItem("isLoggedIn") === "true"
+  
+  if (isAdmin && isLoggedIn) {
+    // Tạo biểu tượng admin
+    const adminIcon = document.createElement("div")
+    adminIcon.className = "admin-icon"
+    adminIcon.innerHTML = "🔧"
+    adminIcon.title = "Admin Panel"
+    adminIcon.onclick = () => {
+      window.location.href = "../AdminPage/index.html"
+    }
+    document.body.appendChild(adminIcon)
+  }
+}
+
 // ==================== KHỞI TẠO CHÍNH ====================
 document.addEventListener("DOMContentLoaded", () => {
   // Khởi tạo các chức năng
@@ -250,6 +268,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initSearch()
   initSliders()
   initDates()
+  initAdmin()
 
   // Xử lý nút mua vé
   document.querySelectorAll(".btn-ticket").forEach(btn => {

@@ -11,6 +11,17 @@ function validateEmail() {
   /* Kiểm tra email có kết thúc bằng @gmail.com */
   if (email.endsWith("@gmail.com")) {
     try {
+      /* Lưu thông tin đăng nhập vào localStorage */
+      localStorage.setItem("userEmail", email);
+      localStorage.setItem("isLoggedIn", "true");
+      
+      /* Kiểm tra nếu là admin */
+      if (email === "admin@gmail.com") {
+        localStorage.setItem("isAdmin", "true");
+      } else {
+        localStorage.setItem("isAdmin", "false");
+      }
+      
       /* Chuyển hướng đến index.html trong thư mục HomePage */
       window.location.href = "../HomePage/index.html";
     } catch (error) {

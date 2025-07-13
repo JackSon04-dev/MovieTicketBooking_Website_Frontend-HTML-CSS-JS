@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CineVerse Admin Panel</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header Admin -->
+  <header class="admin-header">
+    <div class="admin-container">
+      <h1>🎬 CineVerse Admin Panel</h1>
+      <div class="admin-user-info">
+        <span id="admin-email">admin@gmail.com</span>
+        <button class="btn-logout" onclick="logout()">Đăng xuất</button>
+        <button class="btn-back" onclick="goBack()">Về trang chủ</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Sidebar Navigation -->
+  <nav class="admin-sidebar">
+    <ul class="admin-nav">
+      <li><a href="#dashboard" class="nav-link active" onclick="showSection('dashboard')">📊 Dashboard</a></li>
+      <li><a href="#users" class="nav-link" onclick="showSection('users')">👥 Quản lý người dùng</a></li>
+      <li><a href="#movies" class="nav-link" onclick="showSection('movies')">🎬 Quản lý phim</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="admin-main">
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="admin-section active">
+      <h2>Dashboard</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <h3>Tổng số phim</h3>
+          <p class="stat-number" id="total-movies">8</p>
+        </div>
+        <div class="stat-card">
+          <h3>Người dùng đăng ký</h3>
+          <p class="stat-number" id="total-users">156</p>
+        </div>
+        <div class="stat-card">
+          <h3>Vé đã bán hôm nay</h3>
+          <p class="stat-number" id="tickets-today">42</p>
+        </div>
+        <div class="stat-card">
+          <h3>Doanh thu tháng này</h3>
+          <p class="stat-number" id="revenue-month">125,000,000₫</p>
+        </div>
+      </div>
+      
+      <div class="chart-container">
+        <h3>Thống kê doanh thu 7 ngày qua</h3>
+        <div class="simple-chart">
+          <div class="chart-bar" style="height: 60%"><span>Mon</span></div>
+          <div class="chart-bar" style="height: 80%"><span>Tue</span></div>
+          <div class="chart-bar" style="height: 45%"><span>Wed</span></div>
+          <div class="chart-bar" style="height: 90%"><span>Thu</span></div>
+          <div class="chart-bar" style="height: 70%"><span>Fri</span></div>
+          <div class="chart-bar" style="height: 95%"><span>Sat</span></div>
+          <div class="chart-bar" style="height: 85%"><span>Sun</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Users Management Section -->
+    <section id="users" class="admin-section">
+      <h2>Quản lý người dùng</h2>
+      <div class="section-actions">
+        <button class="btn-primary" onclick="showAddUserModal()">Thêm người dùng</button>
+        <input type="text" placeholder="Tìm kiếm người dùng..." class="search-input" id="user-search">
+      </div>
+      
+      <div class="table-container">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Email</th>
+              <th>Tên</th>
+              <th>Ngày đăng ký</th>
+              <th>Trạng thái</th>
+              <th>Thao tác</th>
+            </tr>
+          </thead>
+          <tbody id="users-table-body">
+            <tr>
+              <td>1</td>
+              <td>user1@gmail.com</td>
+              <td>Nguyễn Văn A</td>
+              <td>15/01/2025</td>
+              <td><span class="status active">Hoạt động</span></td>
+              <td>
+                <button class="btn-edit" onclick="editUser(1)">Sửa</button>
+                <button class="btn-delete" onclick="deleteUser(1)">Xóa</button>
+              </td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>user2@gmail.com</td>
+              <td>Trần Thị B</td>
+              <td>14/01/2025</td>
+              <td><span class="status active">Hoạt động</span></td>
+              <td>
+                <button class="btn-edit" onclick="editUser(2)">Sửa</button>
+                <button class="btn-delete" onclick="deleteUser(2)">Xóa</button>
+              </td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>user3@gmail.com</td>
+              <td>Lê Văn C</td>
+              <td>13/01/2025</td>
+              <td><span class="status inactive">Tạm khóa</span></td>
+              <td>
+                <button class="btn-edit" onclick="editUser(3)">Sửa</button>
+                <button class="btn-delete" onclick="deleteUser(3)">Xóa</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Movies Management Section -->
+    <section id="movies" class="admin-section">
+      <h2>Quản lý phim</h2>
+      <div class="section-actions">
+        <button class="btn-primary" onclick="showAddMovieModal()">Thêm phim mới</button>
+        <input type="text" placeholder="Tìm kiếm phim..." class="search-input" id="movie-search">
+      </div>
+      
+      <div class="movies-grid" id="movies-grid">
+        <div class="movie-admin-card">
+          <img src="../HomePage/Images/movie1.png" alt="Movie" class="movie-admin-img">
+          <div class="movie-admin-info">
+            <h4>Quỷ Nhập Tràng</h4>
+            <p>Thể loại: Kinh dị</p>
+            <p>Thời lượng: 120 phút</p>
+            <p>Trạng thái: <span class="status active">Đang chiếu</span></p>
+            <div class="movie-actions">
+              <button class="btn-edit" onclick="editMovie(1)">Sửa</button>
+              <button class="btn-delete" onclick="deleteMovie(1)">Xóa</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="movie-admin-card">
+          <img src="../HomePage/Images/movie5.jpg" alt="Movie" class="movie-admin-img">
+          <div class="movie-admin-info">
+            <h4>Red Man</h4>
+            <p>Thể loại: Hành động</p>
+            <p>Thời lượng: 110 phút</p>
+            <p>Trạng thái: <span class="status active">Đang chiếu</span></p>
+            <div class="movie-actions">
+              <button class="btn-edit" onclick="editMovie(2)">Sửa</button>
+              <button class="btn-delete" onclick="deleteMovie(2)">Xóa</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="movie-admin-card">
+          <img src="../HomePage/Images/movie3.png" alt="Movie" class="movie-admin-img">
+          <div class="movie-admin-info">
+            <h4>Mickey 17</h4>
+            <p>Thể loại: Khoa học viễn tưởng</p>
+            <p>Thời lượng: 135 phút</p>
+            <p>Trạng thái: <span class="status active">Đang chiếu</span></p>
+            <div class="movie-actions">
+              <button class="btn-edit" onclick="editMovie(3)">Sửa</button>
+              <button class="btn-delete" onclick="deleteMovie(3)">Xóa</button>
+            </div>
+          </div>
+        </div>
+        
+        <div class="movie-admin-card">
+          <img src="../HomePage/Images/3.png" alt="Movie" class="movie-admin-img">
+          <div class="movie-admin-info">
+            <h4>Nghề Siêu Khó</h4>
+            <p>Thể loại: Hài</p>
+            <p>Thời lượng: 95 phút</p>
+            <p>Trạng thái: <span class="status inactive">Sắp chiếu</span></p>
+            <div class="movie-actions">
+              <button class="btn-edit" onclick="editMovie(4)">Sửa</button>
+              <button class="btn-delete" onclick="deleteMovie(4)">Xóa</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal thêm/sửa phim -->
+  <div id="movie-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('movie-modal')">&times;</span>
+      <h3 id="movie-modal-title">Thêm phim mới</h3>
+      <form id="movie-form">
+        <div class="form-group">
+          <label for="movie-title">Tên phim:</label>
+          <input type="text" id="movie-title" required>
+        </div>
+        <div class="form-group">
+          <label for="movie-genre">Thể loại:</label>
+          <select id="movie-genre" required>
+            <option value="">Chọn thể loại</option>
+            <option value="action">Hành động</option>
+            <option value="horror">Kinh dị</option>
+            <option value="comedy">Hài</option>
+            <option value="drama">Chính kịch</option>
+            <option value="sci-fi">Khoa học viễn tưởng</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="movie-duration">Thời lượng (phút):</label>
+          <input type="number" id="movie-duration" required>
+        </div>
+        <div class="form-group">
+          <label for="movie-rating">Độ tuổi:</label>
+          <select id="movie-rating" required>
+            <option value="">Chọn độ tuổi</option>
+            <option value="T13">T13</option>
+            <option value="T16">T16</option>
+            <option value="T18">T18</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="movie-status">Trạng thái:</label>
+          <select id="movie-status" required>
+            <option value="">Chọn trạng thái</option>
+            <option value="showing">Đang chiếu</option>
+            <option value="coming">Sắp chiếu</option>
+            <option value="ended">Đã kết thúc</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="movie-image">URL hình ảnh:</label>
+          <input type="url" id="movie-image" placeholder="https://example.com/image.jpg">
+        </div>
+        <div class="form-group">
+          <label for="movie-description">Mô tả:</label>
+          <textarea id="movie-description" rows="4"></textarea>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">Lưu</button>
+          <button type="button" class="btn-secondary" onclick="closeModal('movie-modal')">Hủy</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal thêm/sửa người dùng -->
+  <div id="user-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal('user-modal')">&times;</span>
+      <h3 id="user-modal-title">Thêm người dùng</h3>
+      <form id="user-form">
+        <div class="form-group">
+          <label for="user-email">Email:</label>
+          <input type="email" id="user-email" required>
+        </div>
+        <div class="form-group">
+          <label for="user-name">Tên:</label>
+          <input type="text" id="user-name" required>
+        </div>
+        <div class="form-group">
+          <label for="user-status">Trạng thái:</label>
+          <select id="user-status" required>
+            <option value="">Chọn trạng thái</option>
+            <option value="active">Hoạt động</option>
+            <option value="inactive">Tạm khóa</option>
+          </select>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn-primary">Lưu</button>
+          <button type="button" class="btn-secondary" onclick="closeModal('user-modal')">Hủy</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
