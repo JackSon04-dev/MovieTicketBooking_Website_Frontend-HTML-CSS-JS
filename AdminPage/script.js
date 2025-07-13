@@ -244,8 +244,17 @@ function handleUserSubmit(e) {
 }
 
 function addUser(userData) {
+  // Tính ID mới dựa trên ID cao nhất hiện tại
+  const existingRows = document.querySelectorAll("#users-table-body tr");
+  let maxId = 0;
+  existingRows.forEach(row => {
+    const id = parseInt(row.cells[0].textContent);
+    if (id > maxId) maxId = id;
+  });
+  const newId = maxId + 1;
+  
   const tableBody = document.getElementById("users-table-body");
-  const newRow = createUserRow(userData, Date.now());
+  const newRow = createUserRow(userData, newId);
   tableBody.appendChild(newRow);
   
   // Cập nhật số liệu dashboard
