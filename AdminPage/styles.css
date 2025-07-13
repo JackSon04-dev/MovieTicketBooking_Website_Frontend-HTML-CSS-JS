@@ -251,9 +251,9 @@ body {
 }
 
 .search-input {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.9);
   border: 2px solid rgba(255, 255, 255, 0.2);
-  color: #f8fafc;
+  color: #1f2937;
   padding: 10px 16px;
   border-radius: 8px;
   width: 300px;
@@ -263,7 +263,11 @@ body {
 .search-input:focus {
   outline: none;
   border-color: #3b82f6;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.search-input::placeholder {
+  color: #6b7280;
 }
 
 /* ==================== TABLE ==================== */
